@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shravan & Sheetal - Royal Wedding Invite</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
+
+    :root {
+      --bg-ivory: #fcf8f2;
+      --bg-warm: #f4ece1;
+      --gold-primary: #b8860b;
+      --gold-light: #d4af37;
+      --gold-border: rgba(184, 134, 11, 0.35);
+      --text-dark: #3b250c;
+      --text-muted: #5e4427;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body, html {
+      width: 100%;
+      min-height: 100%;
+      font-family: 'Playfair Display', serif;
+      background-color: var(--bg-ivory);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body.locked {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* ==========================================
+       STEP 1: WELCOME SCREEN
+       ========================================== */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 24px;
+      z-index: 1000;
+      background-color: var(--bg-ivory);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
+      border: 12px double var(--gold-border);
+    }
+
+    /* Frosted card behind welcome text so the background photo stays clearly visible */
+    .welcome-card {
+      background: rgba(252, 248, 242, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 24px;
+      padding: 36px 28px;
+      max-width: 540px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 12px 35px rgba(59, 37, 12, 0.15);
+    }
+
+    .mantra {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 20px;
+      letter-spacing: 0.8px;
+      line-height: 1.6;
+    }
+
+    .monogram {
+      width: 84px;
+      height: 84px;
+      border: 2px solid var(--gold-primary);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 22px;
+      background-color: rgba(252, 248, 242, 0.95);
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.15);
+    }
+
+    .monogram-text {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .monogram-date {
+      font-size: 0.6rem;
+      color: var(--text-dark);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .intro-text {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .names {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 16px;
+      color: var(--text-dark);
+      letter-spacing: 1px;
+    }
+
+    .names span {
+      display: block;
+      font-size: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold-primary);
+      margin: 4px 0;
+    }
+
+    .details {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .enter-btn {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.08rem;
+      font-weight: 600;
+      padding: 14px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(184, 134, 11, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(184, 134, 11, 0.5);
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    /* ==========================================
+       STEP 2: MAIN INVITE & FUNCTION CARDS
+       ========================================== */
+    #main-invite {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      background: radial-gradient(circle at top, #fffdf9 0%, #f7efe2 100%);
+      padding-bottom: 80px;
+    }
+
+    #main-invite.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(252, 248, 242, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar-brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--gold-primary);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .music-btn {
+      background: transparent;
+      border: 1px solid var(--gold-primary);
+      color: var(--text-dark);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero-section {
+      text-align: center;
+      padding: 48px 16px 36px;
+    }
+
+    .sanskrit-sub {
+      color: var(--gold-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .jharokha-frame {
+      width: 280px;
+      height: 360px;
+      margin: 0 auto 28px;
+      padding: 10px;
+      background: linear-gradient(135deg, #e5c158, #b8860b);
+      border-radius: 140px 140px 16px 16px;
+      box-shadow: 0 14px 35px rgba(59, 37, 12, 0.15);
+    }
+
+    .jharokha-inner {
+      width: 100%;
+      height: 100%;
+      background: #fdfaf5;
+      border-radius: 132px 132px 10px 10px;
+      overflow: hidden;
+    }
+
+    .jharokha-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .countdown-box {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin: 0 auto 40px;
+      flex-wrap: wrap;
+    }
+
+    .time-pill {
+      background: #fff;
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      width: 74px;
+      padding: 12px 8px;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.08);
+    }
+
+    .time-pill span {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .time-pill small {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 20px 0 36px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .ornament-divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-bottom: 50px;
+    }
+
+    .event-card {
+      background: #ffffff;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold-border);
+      box-shadow: 0 10px 28px rgba(59, 37, 12, 0.08);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px rgba(59, 37, 12, 0.14);
+    }
+
+    .card-top-banner {
+      height: 8px;
+      width: 100%;
+    }
+
+    .card-haldi .card-top-banner { background: linear-gradient(90deg, #f7b733, #fc4a1a); }
+    .card-sangeet .card-top-banner { background: linear-gradient(90deg, #11998e, #145a32); }
+    .card-wedding .card-top-banner { background: linear-gradient(90deg, #8b1e1e, #d4af37); }
+
+    .card-image-wrapper {
+      padding: 20px 20px 0;
+      background: radial-gradient(circle at center, #fdfaf4 0%, #f4ece0 100%);
+      text-align: center;
+    }
+
+    .card-arch {
+      width: 100%;
+      height: 310px;
+      border-radius: 130px 130px 12px 12px;
+      overflow: hidden;
+      border: 3px solid var(--gold-light);
+      background: #fdf8ef;
+      position: relative;
+    }
+
+    .card-arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+    }
+
+    .event-card:hover .card-arch img {
+      transform: scale(1.04);
+    }
+
+    .card-body {
+      padding: 24px 22px 28px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .event-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-haldi .event-tag { background: #fff3cd; color: #b87c00; }
+    .card-sangeet .event-tag { background: #d4efdf; color: #145a32; }
+    .card-wedding .event-tag { background: #fadbd8; color: #8b1e1e; }
+
+    .event-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .event-datetime {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 12px;
+    }
+
+    .event-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .dress-code {
+      background: var(--bg-ivory);
+      border: 1px dashed var(--gold-border);
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      color: var(--text-dark);
+    }
+
+    .dress-code strong {
+      color: var(--gold-primary);
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 30px 20px 10px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="locked">
+
+  <!-- STEP 1: WELCOME SCREEN -->
+  <div id="welcome-screen">
+    <div class="welcome-card">
+      <div class="mantra">
+        ॥ ॐ सह नाववतु सह नौ भुनक्तु सह वीर्य करवावहै ॥
+      </div>
+
+      <div class="monogram">
+        <div class="monogram-text">S&S</div>
+        <div class="monogram-date">2 DEC 2026</div>
+      </div>
+
+      <div class="intro-text">Together with their families</div>
+
+      <div class="names">
+        SHRAVAN AGRAWAL
+        <span>&</span>
+        SHEETAL YADAV
+      </div>
+
+      <div class="details">
+        Request the honour of your royal presence at their <br>
+        Wedding Celebrations in <span class="highlight">Bhopal</span>
+      </div>
+
+      <button class="enter-btn" onclick="openInvite()">Tap to open Invite</button>
+
+      <div class="footer-text">
+        30th Nov – 2nd Dec 2026 • Bhopal, Madhya Pradesh
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: MAIN INVITE & FUNCTION CARDS -->
+  <div id="main-invite">
+    <div class="top-bar">
+      <div class="top-bar-brand">SHRAVAN & SHEETAL</div>
+      <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵 Play Music</button>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="song.mp3" type="audio/mpeg">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+      <section class="hero-section">
+        <div class="sanskrit-sub">॥ श्री गणेशाय नमः ॥</div>
+        
+        <div class="jharokha-frame">
+          <div class="jharokha-inner">
+            <img id="img-main" alt="Shravan and Sheetal">
+          </div>
+        </div>
+
+        <h1 class="hero-title">Shravan & Sheetal</h1>
+        <p class="hero-subtitle">A Royal Celebration of Love in the City of Lakes, Bhopal</p>
+
+        <div class="countdown-box">
+          <div class="time-pill"><span id="days">00</span><small>Days</small></div>
+          <div class="time-pill"><span id="hours">00</span><small>Hours</small></div>
+          <div class="time-pill"><span id="mins">00</span><small>Mins</small></div>
+          <div class="time-pill"><span id="secs">00</span><small>Secs</small></div>
+        </div>
+      </section>
+
+      <div class="section-header">
+        <h2>Royal Wedding Itinerary</h2>
+        <div class="ornament-divider"></div>
+      </div>
+
+      <div class="events-grid">
+        <!-- CARD 1: HALDI -->
+        <div class="event-card card-haldi">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-haldi" alt="Haldi Ceremony">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 1 • Morning Glow</span>
+              <h3 class="event-title">Kesariya Haldi</h3>
+              <div class="event-datetime">30th November 2026 • 11:00 AM</div>
+              <p class="event-desc">
+                A vibrant morning of marigold showers, dhol beats, and golden turmeric blessings in Bhopal.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Shades of Marigold Yellow & Mustard
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: MEHNDI & SANGEET -->
+        <div class="event-card card-sangeet">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-sangeet" alt="Mehndi and Sangeet">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 2 • Musical Night</span>
+              <h3 class="event-title">Mehndi & Sangeet</h3>
+              <div class="event-datetime">1st December 2026 • 4:00 PM Onwards</div>
+              <p class="event-desc">
+                An afternoon of intricate henna artistry followed by an electrifying evening of royal Sangeet performances.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Emerald Green & Indo-Western Royal Glam
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: WEDDING & RECEPTION -->
+        <div class="event-card card-wedding">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-wedding" alt="Wedding and Reception">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 3 • The Royal Union</span>
+              <h3 class="event-title">Wedding & Reception</h3>
+              <div class="event-datetime">2nd December 2026 • 7:00 PM Onwards</div>
+              <p class="event-desc">
+                Join us as Shravan & Sheetal take their sacred vows under the stars, followed by a grand Royal Reception dinner.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Royal Rajasthani Traditional, Crimson & Gold
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        We cannot wait to celebrate with you in Bhopal! <br>
+        <strong>#ShravanKiSheetal</strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SMART IMAGE LOADER: Automatically tries .png, .jpg, .jpeg, .PNG, .JPG so GitHub never fails
+    function loadSmartImage(imgElementId, baseNames, fallbackUrl) {
+      const imgEl = document.getElementById(imgElementId);
+      const extensions = ['.png', '.jpg', '.jpeg', '.PNG', '.JPG', '.JPEG', '.webp'];
+      const candidates = [];
+
+      baseNames.forEach(base => {
+        if (base.includes('.')) {
+          candidates.push(base);
+        } else {
+          extensions.forEach(ext => candidates.push(base + ext));
+        }
+      });
+
+      let index = 0;
+      function tryNext() {
+        if (index >= candidates.length) {
+          imgEl.src = fallbackUrl;
+          return;
+        }
+        const testImg = new Image();
+        const currentPath = candidates[index++];
+        testImg.onload = () => { imgEl.src = currentPath; };
+        testImg.onerror = tryNext;
+        testImg.src = currentPath;
+      }
+      tryNext();
+    }
+
+    // SMART WELCOME BACKGROUND LOADER
+    function loadWelcomeBg(baseNames, fallbackUrl) {
+      const welcomeEl = document.getElementById('welcome-screen');
+      const extensions = ['.jpg', '.jpeg', '.png', '.JPG', '.JPEG', '.PNG'];
+      const candidates = [];
+
+      baseNames.forEach(base => {
+        extensions.forEach(ext => candidates.push(base + ext));
+      });
+
+      let index = 0;
+      function tryNext() {
+        if (index >= candidates.length) {
+          welcomeEl.style.backgroundImage = `linear-gradient(rgba(252, 248, 242, 0.45), rgba(244, 236, 225, 0.65)), url('${fallbackUrl}')`;
+          return;
+        }
+        const testImg = new Image();
+        const currentPath = candidates[index++];
+        testImg.onload = () => {
+          welcomeEl.style.backgroundImage = `linear-gradient(rgba(252, 248, 242, 0.35), rgba(244, 236, 225, 0.55)), url('${currentPath}')`;
+        };
+        testImg.onerror = tryNext;
+        testImg.src = currentPath;
+      }
+      tryNext();
+    }
+
+    // Load all images automatically
+    loadWelcomeBg(['welcome-bg', 'welcome', 'couple-main', '42575'], 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1080&q=80');
+    loadSmartImage('img-main', ['couple-main', 'welcome-bg', 'couple-wedding', '42579'], 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');
+    loadSmartImage('img-haldi', ['couple-haldi', 'haldi'], 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80');
+    loadSmartImage('img-sangeet', ['couple-sangeet', 'sangeet', 'mehndi'], 'https://images.unsplash.com/photo-1545232972-90f1f0f502a0?auto=format&fit=crop&w=800&q=80');
+    loadSmartImage('img-wedding', ['couple-wedding', 'wedding'], 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80');
+
+    // Audio & Gate Logic
+    const audio = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+
+    function openInvite() {
+      const welcomeScreen = document.getElementById('welcome-screen');
+      const mainInvite = document.getElementById('main-invite');
+
+      document.body.classList.remove('locked');
+      mainInvite.classList.add('visible');
+
+      welcomeScreen.style.transform = 'translateY(-100%)';
+      welcomeScreen.style.opacity = '0';
+
+      audio.play().then(() => {
+        musicBtn.textContent = '⏸ Pause Music';
+      }).catch(() => {
+        musicBtn.textContent = '🎵 Play Music';
+      });
+
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+      }, 900);
+    }
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.textContent = '⏸ Pause Music';
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Play Music';
+      }
+    }
+
+    // Countdown Timer
+    const weddingDate = new Date('December 2, 2026 19:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff <= 0) return;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('secs').textContent = String(s).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
