@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shravan & Sheetal - Royal Wedding Invite</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
+
+    :root {
+      --bg-ivory: #fcf8f2;
+      --gold-primary: #b8860b;
+      --gold-light: #d4af37;
+      --gold-border: rgba(184, 134, 11, 0.4);
+      --text-dark: #3b250c;
+      --text-muted: #5e4427;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body, html {
+      width: 100%;
+      min-height: 100%;
+      font-family: 'Playfair Display', serif;
+      background-color: var(--bg-ivory);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body.locked {
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* ========================================================
+       STEP 1: WELCOME SCREEN (Exact Fit for Floral Plaque Duo)
+       ======================================================== */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      /* Rich blurred palace backdrop behind the main stage */
+      background: linear-gradient(rgba(45, 25, 10, 0.55), rgba(45, 25, 10, 0.7)),
+                  url('Elegant Palace Wedding Invitation Duo.png'),
+                  url('welcome-bg.png'),
+                  url('welcome-bg.jpg');
+      background-position: center;
+      background-size: cover;
+      transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
+    }
+
+    .mobile-top-hint {
+      display: none;
+      color: #f9e3a3;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+      text-align: center;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* 16:9 Stage that holds the full uncropped image and locks text inside the left floral frame */
+    .welcome-stage {
+      position: relative;
+      width: min(96vw, calc(92vh * 16 / 9));
+      aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 3px solid var(--gold-light);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.55);
+      background-color: #f6efe4;
+    }
+
+    .welcome-stage-img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      display: block;
+    }
+
+    /* Positioned strictly inside the white floral board on the left side of the image */
+    .plaque-overlay {
+      position: absolute;
+      top: 19%;
+      left: 17.5%;
+      width: 44.5%;
+      height: 61%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1.5% 2.5%;
+      container-type: inline-size;
+    }
+
+    .mantra {
+      font-size: clamp(0.5rem, 2.3cqi, 1.05rem);
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 2.2%;
+      letter-spacing: 0.4px;
+      line-height: 1.35;
+    }
+
+    .monogram {
+      width: clamp(28px, 11cqi, 68px);
+      height: clamp(28px, 11cqi, 68px);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 2.2%;
+      background-color: rgba(252, 248, 242, 0.9);
+      box-shadow: 0 3px 10px rgba(184, 134, 11, 0.15);
+      flex-shrink: 0;
+    }
+
+    .monogram-text {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.55rem, 3.2cqi, 1.25rem);
+      color: var(--gold-primary);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .monogram-date {
+      font-size: clamp(0.32rem, 1.3cqi, 0.52rem);
+      color: var(--text-dark);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+      font-weight: 700;
+    }
+
+    .intro-text {
+      font-style: italic;
+      font-size: clamp(0.45rem, 2.1cqi, 0.95rem);
+      color: var(--text-muted);
+      margin-bottom: 1%;
+    }
+
+    .names {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.7rem, 4.3cqi, 1.95rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 2%;
+      color: var(--text-dark);
+      letter-spacing: 0.6px;
+    }
+
+    .names span {
+      display: block;
+      font-size: clamp(0.55rem, 2.8cqi, 1.2rem);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--gold-primary);
+      margin: 1px 0;
+    }
+
+    .details {
+      font-size: clamp(0.42rem, 2cqi, 0.9rem);
+      line-height: 1.4;
+      margin-bottom: 3%;
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--gold-primary);
+      font-weight: 700;
+    }
+
+    .enter-btn {
+      background: linear-gradient(135deg, #d4af37, #b8860b);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(0.5rem, 2.3cqi, 1rem);
+      font-weight: 600;
+      padding: 2.2% 6.5%;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 5px 16px rgba(184, 134, 11, 0.38);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .enter-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(184, 134, 11, 0.5);
+    }
+
+    .footer-text {
+      margin-top: 2%;
+      font-size: clamp(0.38rem, 1.6cqi, 0.72rem);
+      color: var(--text-muted);
+      letter-spacing: 0.3px;
+    }
+
+    /* Extra thumb-friendly button below the frame on mobile phones */
+    .mobile-bottom-cta {
+      display: none;
+      margin-top: 18px;
+      text-align: center;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .mobile-bottom-cta button {
+      width: 100%;
+      background: linear-gradient(135deg, #f3d266, #b8860b);
+      color: #2b1804;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 14px 28px;
+      border: 1.5px solid #fff3c4;
+      border-radius: 50px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+      cursor: pointer;
+    }
+
+    /* ========================================================
+       STEP 2: INTERNAL PAGES WITH RICH PALACE BACKGROUND
+       ======================================================== */
+    #main-invite {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      min-height: 100vh;
+      position: relative;
+      /* Softly veiled Royal Palace & Mandala textured background instead of plain solid color */
+      background-image: 
+        linear-gradient(rgba(252, 248, 242, 0.86), rgba(246, 236, 220, 0.90)),
+        url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23b8860b' stroke-width='0.6' stroke-opacity='0.18'%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3Ccircle cx='60' cy='60' r='36'/%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3Cpath d='M60 12 L60 108 M12 60 L108 60 M26 26 L94 94 M94 26 L26 94'/%3E%3C/g%3E%3C/svg%3E"),
+        url('Elegant Palace Wedding Invitation Duo.png'),
+        url('welcome-bg.png'),
+        url('welcome-bg.jpg');
+      background-repeat: no-repeat, repeat, no-repeat, no-repeat, no-repeat;
+      background-size: cover, 140px 140px, cover, cover, cover;
+      background-position: center, center, center, center, center;
+      background-attachment: fixed;
+      padding-bottom: 80px;
+    }
+
+    #main-invite.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(252, 248, 242, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid var(--gold-border);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(59, 37, 12, 0.06);
+    }
+
+    .top-bar-brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--gold-primary);
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+    }
+
+    .music-btn {
+      background: #fffdf9;
+      border: 1px solid var(--gold-primary);
+      color: var(--text-dark);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      box-shadow: 0 2px 8px rgba(184, 134, 11, 0.12);
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+
+    /* Ornate Royal Section Card Container */
+    .royal-panel {
+      background: rgba(255, 253, 248, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 26px;
+      padding: 38px 24px;
+      margin-top: 28px;
+      box-shadow: 0 14px 40px rgba(59, 37, 12, 0.09);
+      position: relative;
+    }
+
+    .hero-section {
+      text-align: center;
+    }
+
+    .sanskrit-sub {
+      color: var(--gold-primary);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: 0.8px;
+    }
+
+    .jharokha-frame {
+      width: 265px;
+      height: 345px;
+      margin: 0 auto 24px;
+      padding: 8px;
+      background: linear-gradient(135deg, #e5c158, #b8860b);
+      border-radius: 140px 140px 16px 16px;
+      box-shadow: 0 14px 32px rgba(59, 37, 12, 0.18);
+    }
+
+    .jharokha-inner {
+      width: 100%;
+      height: 100%;
+      background: #fdfaf5;
+      border-radius: 132px 132px 10px 10px;
+      overflow: hidden;
+    }
+
+    .jharokha-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 26px;
+    }
+
+    .countdown-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 350px;
+      gap: 12px;
+      margin: 0 auto 10px;
+    }
+
+    .time-pill {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid var(--gold-border);
+      border-radius: 14px;
+      padding: 12px 6px;
+      box-shadow: 0 6px 15px rgba(184, 134, 11, 0.1);
+    }
+
+    .time-pill span {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .time-pill small {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 42px 0 28px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 4.5vw, 1.95rem);
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    }
+
+    .ornament-divider {
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-bottom: 40px;
+    }
+
+    .event-card {
+      background: rgba(255, 253, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1.5px solid var(--gold-border);
+      box-shadow: 0 12px 30px rgba(59, 37, 12, 0.1);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .event-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 38px rgba(59, 37, 12, 0.16);
+    }
+
+    .card-top-banner {
+      height: 7px;
+      width: 100%;
+    }
+
+    .card-haldi .card-top-banner { background: linear-gradient(90deg, #f7b733, #fc4a1a); }
+    .card-sangeet .card-top-banner { background: linear-gradient(90deg, #11998e, #145a32); }
+    .card-wedding .card-top-banner { background: linear-gradient(90deg, #8b1e1e, #d4af37); }
+
+    .card-image-wrapper {
+      padding: 18px 18px 0;
+      background: radial-gradient(circle at center, #fffdf8 0%, #f3e8d6 100%);
+      text-align: center;
+    }
+
+    .card-arch {
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      border-radius: 140px 140px 12px 12px;
+      overflow: hidden;
+      border: 3px solid var(--gold-light);
+      background: #fdf8ef;
+      position: relative;
+    }
+
+    .card-arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+
+    .card-body {
+      padding: 20px 18px 24px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .event-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
