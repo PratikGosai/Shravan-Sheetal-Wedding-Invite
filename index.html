@@ -39,7 +39,7 @@
     }
 
     /* ========================================================
-       STEP 1: WELCOME SCREEN (Exact Fit for Floral Plaque Duo)
+       STEP 1: WELCOME SCREEN
        ======================================================== */
     #welcome-screen {
       position: fixed;
@@ -53,13 +53,7 @@
       justify-content: center;
       align-items: center;
       padding: 16px;
-      /* Rich blurred palace backdrop behind the main stage */
-      background: linear-gradient(rgba(45, 25, 10, 0.55), rgba(45, 25, 10, 0.7)),
-                  url('Elegant Palace Wedding Invitation Duo.png'),
-                  url('welcome-bg.png'),
-                  url('welcome-bg.jpg');
-      background-position: center;
-      background-size: cover;
+      background: #2b1804 url('welcome-bg.png') center/cover no-repeat;
       transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
     }
 
@@ -74,7 +68,6 @@
       text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
-    /* 16:9 Stage that holds the full uncropped image and locks text inside the left floral frame */
     .welcome-stage {
       position: relative;
       width: min(96vw, calc(92vh * 16 / 9));
@@ -93,7 +86,6 @@
       display: block;
     }
 
-    /* Positioned strictly inside the white floral board on the left side of the image */
     .plaque-overlay {
       position: absolute;
       top: 19%;
@@ -214,7 +206,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Extra thumb-friendly button below the frame on mobile phones */
     .mobile-bottom-cta {
       display: none;
       margin-top: 18px;
@@ -238,7 +229,7 @@
     }
 
     /* ========================================================
-       STEP 2: INTERNAL PAGES WITH RICH PALACE BACKGROUND
+       STEP 2: INTERNAL PAGES WITH PALACE BACKGROUND
        ======================================================== */
     #main-invite {
       display: none;
@@ -246,16 +237,13 @@
       transition: opacity 0.8s ease;
       min-height: 100vh;
       position: relative;
-      /* Softly veiled Royal Palace & Mandala textured background instead of plain solid color */
       background-image: 
         linear-gradient(rgba(252, 248, 242, 0.86), rgba(246, 236, 220, 0.90)),
         url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23b8860b' stroke-width='0.6' stroke-opacity='0.18'%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3Ccircle cx='60' cy='60' r='36'/%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3Cpath d='M60 12 L60 108 M12 60 L108 60 M26 26 L94 94 M94 26 L26 94'/%3E%3C/g%3E%3C/svg%3E"),
-        url('Elegant Palace Wedding Invitation Duo.png'),
-        url('welcome-bg.png'),
-        url('welcome-bg.jpg');
-      background-repeat: no-repeat, repeat, no-repeat, no-repeat, no-repeat;
-      background-size: cover, 140px 140px, cover, cover, cover;
-      background-position: center, center, center, center, center;
+        url('welcome-bg.png');
+      background-repeat: no-repeat, repeat, no-repeat;
+      background-size: cover, 140px 140px, cover;
+      background-position: center, center, center;
       background-attachment: fixed;
       padding-bottom: 80px;
     }
@@ -307,7 +295,6 @@
       padding: 0 18px;
     }
 
-    /* Ornate Royal Section Card Container */
     .royal-panel {
       background: rgba(255, 253, 248, 0.82);
       backdrop-filter: blur(8px);
@@ -495,3 +482,312 @@
       padding: 4px 12px;
       border-radius: 20px;
       font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .card-haldi .event-tag { background: #fff3cd; color: #b87c00; }
+    .card-sangeet .event-tag { background: #d4efdf; color: #145a32; }
+    .card-wedding .event-tag { background: #fadbd8; color: #8b1e1e; }
+
+    .event-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .event-datetime {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+      margin-bottom: 10px;
+    }
+
+    .event-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .dress-code {
+      background: var(--bg-ivory);
+      border: 1px dashed var(--gold-border);
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      color: var(--text-dark);
+    }
+
+    .dress-code strong {
+      color: var(--gold-primary);
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 28px 20px;
+      background: rgba(255, 253, 248, 0.85);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      #welcome-screen {
+        padding: 10px;
+      }
+
+      .mobile-top-hint {
+        display: block;
+      }
+
+      .welcome-stage {
+        width: 96vw;
+        border-radius: 14px;
+      }
+
+      .mobile-bottom-cta {
+        display: block;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        max-width: 420px;
+        margin: 0 auto 36px;
+      }
+
+      .royal-panel {
+        padding: 28px 16px;
+      }
+    }
+  </style>
+</head>
+<body class="locked">
+
+  <!-- ========================================================
+       STEP 1: WELCOME SCREEN
+       ======================================================== -->
+  <div id="welcome-screen">
+    <div class="mobile-top-hint">✨ SHRAVAN & SHEETAL'S ROYAL INVITE ✨</div>
+
+    <div class="welcome-stage" onclick="openInvite()">
+      <img id="img-welcome-stage" 
+           class="welcome-stage-img" 
+           src="welcome-bg.png"
+           alt="Shravan and Sheetal Royal Invite">
+
+      <div class="plaque-overlay">
+        <div class="mantra">
+          ॥ ॐ सह नाववतु सह नौ भुनक्तु सह वीर्य करवावहै ॥
+        </div>
+
+        <div class="monogram">
+          <div class="monogram-text">S&S</div>
+          <div class="monogram-date">2 DEC 2026</div>
+        </div>
+
+        <div class="intro-text">Together with their families</div>
+
+        <div class="names">
+          SHRAVAN AGRAWAL
+          <span>&</span>
+          SHEETAL YADAV
+        </div>
+
+        <div class="details">
+          Request the honour of your royal presence at their <br>
+          Wedding Celebrations in <span class="highlight">Bhopal</span>
+        </div>
+
+        <button class="enter-btn" onclick="event.stopPropagation(); openInvite();">Tap to open Invite</button>
+
+        <div class="footer-text">
+          30th Nov – 2nd Dec 2026 • Bhopal, Madhya Pradesh
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-bottom-cta">
+      <button onclick="openInvite()">✨ Tap to open Invite ✨</button>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       STEP 2: MAIN INVITE & FUNCTION CARDS
+       ======================================================== -->
+  <div id="main-invite">
+    <div class="top-bar">
+      <div class="top-bar-brand">SHRAVAN & SHEETAL</div>
+      <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵 Play Music</button>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="song.mp3" type="audio/mpeg">
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+      <section class="royal-panel hero-section">
+        <div class="sanskrit-sub">॥ श्री गणेशाय नमः ॥</div>
+        
+        <div class="jharokha-frame">
+          <div class="jharokha-inner">
+            <img id="img-main" src="couple-wedding.png" alt="Shravan and Sheetal">
+          </div>
+        </div>
+
+        <h1 class="hero-title">Shravan & Sheetal</h1>
+        <p class="hero-subtitle">A Royal Celebration of Love in the City of Lakes, Bhopal</p>
+
+        <div class="countdown-box">
+          <div class="time-pill"><span id="days">00</span><small>Days</small></div>
+          <div class="time-pill"><span id="hours">00</span><small>Hours</small></div>
+          <div class="time-pill"><span id="mins">00</span><small>Mins</small></div>
+          <div class="time-pill"><span id="secs">00</span><small>Secs</small></div>
+        </div>
+      </section>
+
+      <div class="section-header">
+        <h2>Royal Wedding Itinerary</h2>
+        <div class="ornament-divider"></div>
+      </div>
+
+      <div class="events-grid">
+        <!-- CARD 1: HALDI -->
+        <div class="event-card card-haldi">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-haldi" src="couple-haldi.png" alt="Haldi Ceremony">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 1 • Morning Glow</span>
+              <h3 class="event-title">Kesariya Haldi</h3>
+              <div class="event-datetime">30th November 2026 • 11:00 AM</div>
+              <p class="event-desc">
+                A vibrant morning of marigold showers, dhol beats, and golden turmeric blessings in Bhopal.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Shades of Marigold Yellow & Mustard
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: MEHNDI & SANGEET -->
+        <div class="event-card card-sangeet">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-sangeet" src="couple-sangeet.png" alt="Mehndi and Sangeet">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 2 • Musical Night</span>
+              <h3 class="event-title">Mehndi & Sangeet</h3>
+              <div class="event-datetime">1st December 2026 • 4:00 PM Onwards</div>
+              <p class="event-desc">
+                An afternoon of intricate henna artistry followed by an electrifying evening of royal Sangeet performances.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Emerald Green & Indo-Western Royal Glam
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: WEDDING & RECEPTION -->
+        <div class="event-card card-wedding">
+          <div class="card-top-banner"></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-wedding" src="couple-wedding.png" alt="Wedding and Reception">
+            </div>
+          </div>
+          <div class="card-body">
+            <div>
+              <span class="event-tag">Day 3 • The Royal Union</span>
+              <h3 class="event-title">Wedding & Reception</h3>
+              <div class="event-datetime">2nd December 2026 • 7:00 PM Onwards</div>
+              <p class="event-desc">
+                Join us as Shravan & Sheetal take their sacred vows under the stars, followed by a grand Royal Reception dinner.
+              </p>
+            </div>
+            <div class="dress-code">
+              <strong>Dress Code:</strong> Royal Rajasthani Traditional, Crimson & Gold
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        We cannot wait to celebrate with you in Bhopal! <br>
+        <strong>#ShravanKiSheetal</strong>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-toggle');
+
+    function openInvite() {
+      const welcomeScreen = document.getElementById('welcome-screen');
+      const mainInvite = document.getElementById('main-invite');
+
+      document.body.classList.remove('locked');
+      mainInvite.classList.add('visible');
+      window.scrollTo(0, 0);
+
+      welcomeScreen.style.transform = 'translateY(-100%)';
+      welcomeScreen.style.opacity = '0';
+
+      audio.play().then(() => {
+        musicBtn.textContent = '⏸ Pause Music';
+      }).catch(() => {
+        musicBtn.textContent = '🎵 Play Music';
+      });
+
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+      }, 900);
+    }
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.textContent = '⏸ Pause Music';
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Play Music';
+      }
+    }
+
+    // Countdown Timer
+    const weddingDate = new Date('December 2, 2026 19:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff <= 0) return;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('secs').textContent = String(s).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
