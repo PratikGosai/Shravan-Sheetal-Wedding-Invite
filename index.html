@@ -6,7 +6,7 @@
   <title>Shravan & Sheetal - Wedding Invite</title>
 
   <!-- =========================================================================
-       1. EDIT ALL YOUR TEXTS, DRESS CODES & LINKS HERE (PAGE BY PAGE)
+       1. EDIT ALL YOUR TEXTS, TIMINGS, DRESS CODES & LINKS HERE (PAGE BY PAGE)
        ========================================================================= -->
   <script>
     const INVITE_CONFIG = {
@@ -14,14 +14,14 @@
       // ---------------- PAGE 0: LANDING PAGE ----------------
       landingPage: {
         imageFile: "Landing Page.png",
-        topOptionalLine: "॥ तदेव लग्नं सुदिनं तदेव ॥", // Leave blank or add a short line anytime
-        monogramInitials: "S&S",
+        topOptionalLine: "",
+        monogramInitials: "ૐ?",
         monogramDate: "2 DEC 2026",
         introLine: "Together with their families",
-        groomName: "SHRAVAN AGRAWAL",
+        groomName: "SHRAVAN",
         andSymbol: "&",
-        brideName: "SHEETAL YADAV",
-        inviteTextLine1: "Request the honour of your presence at their",
+        brideName: "SHEETAL",
+        inviteTextLine1: "Request the honour of your royal presence at their",
         inviteTextLine2: "Wedding Celebrations in",
         cityHighlight: "Bhopal",
         buttonText: "Tap to open Invite",
@@ -33,59 +33,73 @@
         imageFile: "First Page.png",
         topBlessing: "॥ श्री गणेशाय नमः ॥",
         coupleTitle: "Shravan & Sheetal",
-        tagline: "A Celebration of Love in the City of Lakes, Bhopal",
-        weddingCountdownDate: "December 2, 2026 19:00:00",
-        itineraryHeading: "Wedding Itinerary"
+        tagline: "A Royal Celebration of Love in the City of Lakes, Bhopal",
+        weddingCountdownDate: "December 2, 2026 18:30:00",
+        itineraryHeading: "परिणयोत्सव • Wedding Itinerary"
       },
 
-      // ---------------- PAGE 2: HALDI CARD ----------------
+      // ---------------- PAGE 2: DAY 1 (30th NOV) CARD ----------------
       haldiPage: {
         imageFile: "couple-haldi.png",
-        dayTag: "Day 1 • Morning Glow",
-        title: "Kesariya Haldi",
-        dateTime: "30th November 2026 • 11:00 AM",
-        description: "A vibrant morning of marigold showers, dhol beats, and golden turmeric blessings in Bhopal.",
-        dressCodeLabel: "Dress Code:",
-        dressCodeText: "Shades of Marigold Yellow & Mustard"
+        dayTag: "Day 1 • शुभ आरंभ",
+        title: "Shubh Aarambh & Teeka",
+        dateTime: "Monday, 30th November 2026",
+        scheduleList: [
+          { event: "॥ ब्याव हाथ ॥ (Byav Haath)", time: "11:30 AM (सुबह 11.30 बजे)" },
+          { event: "॥ टीका दस्तूर ॥ (Teeka Dastoor)", time: "6:30 PM (शाम 6.30 बजे)" }
+        ],
+        description: "Join us for the auspicious beginning of our wedding rituals followed by the evening Teeka Dastoor celebrations.",
+        dressCodeLabel: "Dress Code: Light Blue Traditional",
+        dressCodeText: "Traditional Festive & Light Blue"
       },
 
-      // ---------------- PAGE 3: MEHNDI & SANGEET CARD ----------------
+      // ---------------- PAGE 3: DAY 2 (1st DEC) CARD ----------------
       sangeetPage: {
         imageFile: "couple-sangeet.png",
-        dayTag: "Day 2 • Musical Night",
-        title: "Mehndi & Sangeet",
-        dateTime: "1st December 2026 • 4:00 PM Onwards",
-        description: "An afternoon of intricate henna artistry followed by an electrifying evening of royal Sangeet performances.",
-        dressCodeLabel: "Dress Code:",
-        dressCodeText: "Emerald Green & Indo-Western Royal Glam"
+        dayTag: "Day 2 • हल्दी, मेहन्दी व संगीत",
+        title: "Haldatbaan, Mehndi & Anand Sandhya",
+        dateTime: "Tuesday, 1st December 2026",
+        scheduleList: [
+          { event: "॥ हल्दातबान ॥ (Haldatbaan)", time: "10:30 AM (सुबह 10.30 बजे)" },
+          { event: "॥ सुन्दरकांड व मेहन्दी ॥ (Sunderkand & Mehndi)", time: "3:00 PM (दोपहर 3.00 बजे)" },
+          { event: "॥ आनंद संध्या ॥ (Anand Sandhya / Sangeet)", time: "8:00 PM (रात्री 8.00 बजे)" }
+        ],
+        description: "A joyful day beginning with golden Haldi blessings, soulful Sunderkand & Mehndi in the afternoon, and a musical Anand Sandhya at night.",
+        dressCodeLabel: "Dress Code: Light Blue Traditional",
+        dressCodeText: "Morning: --- | Afternoon: Light Blue | Night: --- "
       },
 
-      // ---------------- PAGE 4: WEDDING & RECEPTION CARD ----------------
+      // ---------------- PAGE 4: DAY 3 (2nd DEC) CARD ----------------
       weddingPage: {
         imageFile: "couple-wedding.png",
-        dayTag: "Day 3 • The Royal Union",
-        title: "Wedding & Reception",
-        dateTime: "2nd December 2026 • 7:00 PM Onwards",
-        description: "Join us as Shravan & Sheetal take their sacred vows under the stars, followed by a grand Royal Reception dinner.",
+        dayTag: "Day 3 • शुभ विवाह व प्रीति भोज",
+        title: "Wedding & Preeti Bhoj",
+        dateTime: "Wednesday, 2nd December 2026",
+        scheduleList: [
+          { event: "॥ चाक-भात ॥ (Chaak-Bhaat)", time: "11:00 AM (सुबह 11.00 बजे)" },
+          { event: "॥ बारात प्रस्थान ॥ (Baraat Prasthan)", time: "6:30 PM (शाम 6.30 बजे)" },
+          { event: "॥ प्रीति भोज ॥ (Preeti Bhoj / Reception)", time: "8:00 PM (रात्री 8.00 बजे)" }
+        ],
+        description: "Join us for the morning Chaak-Bhaat ritual, the grand evening Baraat procession, and the Royal Wedding & Preeti Bhoj under the stars.",
         dressCodeLabel: "Dress Code:",
-        dressCodeText: "Royal Rajasthani Traditional, Crimson & Gold"
+        dressCodeText: "---"
       },
 
       // ---------------- PAGE 5: VENUE LOCATION & RSVP ----------------
       venueAndRsvpPage: {
-        venueSectionTitle: "Venue & Celebrations",
+        venueSectionTitle: "Royal Venue & Celebrations",
         venueName: "The Royal Heritage Palace & Lawns",
         venueAddress: "Bhopal, Madhya Pradesh",
-        googleMapsLink: "https://maps.google.com/?q=Bhopal+Madhya+Pradesh",
+        googleMapsLink: "https://www.google.com/maps/place/BAGHBAN+RETREAT/@23.2578653,77.2333624,905m/data=!3m1!1e3!4m6!3m5!1s0x397c619f651aa49b:0xcabea3fa5763c2dd!8m2!3d23.2578653!4d77.2359373!16s%2Fg%2F11h6tmgmsn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
         mapButtonText: "📍 View Venue on Google Maps",
 
         rsvpTitle: "Confirm Your Presence (RSVP)",
         rsvpSubtitle: "Please let us know which day you will be joining the celebrations from:",
-        whatsappNumber: "", // Optional: Put your 10-digit number with country code e.g. "919876543210"
+        whatsappNumber: "8085333341 & 8878006459", // Optional: Put your 10-digit number with country code e.g. "919876543210"
         joiningDaysOptions: [
-          "30th Nov — Joining from Haldi (All 3 Days)",
-          "1st Dec — Joining from Mehndi & Sangeet",
-          "2nd Dec — Joining for Wedding & Reception"
+          "30th Nov — Joining from Byav Haath & Teeka (All 3 Days)",
+          "1st Dec — Joining from Haldatbaan, Mehndi & Anand Sandhya",
+          "2nd Dec — Joining for Baraat & Preeti Bhoj"
         ],
         rsvpButtonText: "💌 Send RSVP Confirmation",
         closingLine: "We cannot wait to celebrate with you in Bhopal!",
@@ -160,7 +174,7 @@
     }
 
     /* =========================================================================
-       PAGE 0: LANDING PAGE (Fixed 9:16 Aspect Ratio - Never Collapses)
+       PAGE 0: LANDING PAGE
        ========================================================================= */
     #landing-page {
       position: fixed;
@@ -176,7 +190,6 @@
       transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
     }
 
-    /* Bulletproof 9:16 vertical container for both Desktop & Mobile */
     .landing-card-stage {
       position: relative;
       height: 100vh;
@@ -202,7 +215,6 @@
       display: block;
     }
 
-    /* 1. Monogram inside the built-in golden circle at top: 11.2% */
     .landing-circle-monogram {
       position: absolute;
       top: 11.2%;
@@ -233,7 +245,6 @@
       margin-top: 2px;
     }
 
-    /* 2. Text inside the cream floral plaque above the couple's heads (top: 22.8% to 41.5%) */
     .landing-plaque-text {
       position: absolute;
       top: 22.5%;
@@ -292,7 +303,6 @@
       font-weight: 700;
     }
 
-    /* 3. "Tap to open Invite" Button at the bottom near the feet */
     .landing-bottom-feet {
       position: absolute;
       bottom: 3.5%;
@@ -338,7 +348,7 @@
     }
 
     /* =========================================================================
-       INTERNAL PAGES BACKGROUND (More Visible Palace Backdrop)
+       INTERNAL PAGES BACKGROUND
        ========================================================================= */
     #main-invite {
       display: none;
@@ -354,7 +364,6 @@
       opacity: 1;
     }
 
-    /* Fixed background layer using your exact "First Page.png" file */
     .palace-fixed-bg {
       position: fixed;
       top: 0;
@@ -371,7 +380,6 @@
       filter: saturate(1.1);
     }
 
-    /* Sticky Top Navigation Bar */
     .top-bar {
       position: sticky;
       top: 0;
@@ -399,7 +407,7 @@
       display: flex;
       gap: 8px;
       align-items: center;
-      margin-right: 110px; /* Space so floating petal button doesn't overlap */
+      margin-right: 110px;
     }
 
     .nav-pill-btn {
@@ -415,13 +423,13 @@
     }
 
     .container {
-      max-width: 980px;
+      max-width: 1020px;
       margin: 0 auto;
       padding: 0 14px;
     }
 
     /* =========================================================================
-       PAGE 1: MAIN HERO CARD (Colors Picked from First Page.png)
+       PAGE 1: MAIN HERO CARD
        ========================================================================= */
     .hero-card {
       margin-top: 20px;
@@ -455,7 +463,6 @@
       letter-spacing: 0.8px;
     }
 
-    /* Royal Jharokha Arch for First Page.png */
     .jharokha-frame {
       width: min(82vw, 300px);
       height: min(108vw, 395px);
@@ -529,7 +536,6 @@
       font-weight: 600;
     }
 
-    /* Section Header */
     .section-header {
       text-align: center;
       margin: 34px 0 22px;
@@ -543,13 +549,13 @@
 
     .section-header h2 {
       font-family: 'Cinzel', serif;
-      font-size: clamp(1.25rem, 4.2vw, 1.75rem);
+      font-size: clamp(1.2rem, 4.2vw, 1.7rem);
       color: #fae094;
       letter-spacing: 1px;
     }
 
     /* =========================================================================
-       PAGES 2, 3, 4: EVENT CARDS WITH COLORS PICKED FROM EACH IMAGE
+       PAGES 2, 3, 4: EVENT CARDS WITH CEREMONY TIMELINE BOXES
        ========================================================================= */
     .events-grid {
       display: grid;
@@ -568,83 +574,59 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* PAGE 2: HALDI CARD PALETTE */
+    /* PAGE 2: DAY 1 PALETTE */
     .card-haldi {
-      background: linear-gradient(165deg, rgba(255, 247, 214, 0.90) 0%, rgba(253, 224, 142, 0.86) 55%, rgba(246, 202, 105, 0.88) 100%);
+      background: linear-gradient(165deg, rgba(255, 247, 214, 0.92) 0%, rgba(253, 224, 142, 0.88) 55%, rgba(246, 202, 105, 0.90) 100%);
       border: 2px solid rgba(217, 140, 0, 0.6);
       box-shadow: 0 14px 32px rgba(166, 104, 0, 0.22);
     }
 
-    .card-haldi .card-top-banner {
-      height: 8px;
-      background: linear-gradient(90deg, #ffaa00, #e65c00, #ffaa00);
-    }
-
-    .card-haldi .card-image-wrapper {
-      background: radial-gradient(circle at center, rgba(255, 240, 184, 0.9) 0%, rgba(245, 190, 75, 0.65) 100%);
-    }
-
+    .card-haldi .card-top-banner { height: 8px; background: linear-gradient(90deg, #ffaa00, #e65c00, #ffaa00); }
+    .card-haldi .card-image-wrapper { background: radial-gradient(circle at center, rgba(255, 240, 184, 0.9) 0%, rgba(245, 190, 75, 0.65) 100%); }
     .card-haldi .card-arch { border-color: #d48800; }
     .card-haldi .event-tag { background: #9e5800; color: #fff6d6; }
     .card-haldi .event-title { color: #5e3100; }
     .card-haldi .event-datetime { color: #9e5800; }
-    .card-haldi .dress-code {
-      background: rgba(255, 250, 232, 0.85);
-      border: 1px dashed #b87300;
-      color: #4d2800;
-    }
+    .card-haldi .schedule-item { background: rgba(255, 251, 235, 0.86); border-left: 3.5px solid #d48800; }
+    .card-haldi .schedule-name { color: #5e3100; }
+    .card-haldi .schedule-time { color: #9e5800; }
+    .card-haldi .dress-code { background: rgba(255, 250, 232, 0.85); border: 1px dashed #b87300; color: #4d2800; }
 
-    /* PAGE 3: SANGEET CARD PALETTE */
+    /* PAGE 3: DAY 2 PALETTE */
     .card-sangeet {
-      background: linear-gradient(165deg, rgba(232, 248, 238, 0.90) 0%, rgba(188, 229, 206, 0.86) 50%, rgba(236, 224, 180, 0.88) 100%);
+      background: linear-gradient(165deg, rgba(232, 248, 238, 0.92) 0%, rgba(188, 229, 206, 0.88) 50%, rgba(236, 224, 180, 0.90) 100%);
       border: 2px solid rgba(19, 102, 59, 0.55);
       box-shadow: 0 14px 32px rgba(12, 66, 38, 0.22);
     }
 
-    .card-sangeet .card-top-banner {
-      height: 8px;
-      background: linear-gradient(90deg, #0f5232, #d4af37, #0f5232);
-    }
-
-    .card-sangeet .card-image-wrapper {
-      background: radial-gradient(circle at center, rgba(215, 242, 226, 0.9) 0%, rgba(20, 90, 50, 0.28) 100%);
-    }
-
+    .card-sangeet .card-top-banner { height: 8px; background: linear-gradient(90deg, #0f5232, #d4af37, #0f5232); }
+    .card-sangeet .card-image-wrapper { background: radial-gradient(circle at center, rgba(215, 242, 226, 0.9) 0%, rgba(20, 90, 50, 0.28) 100%); }
     .card-sangeet .card-arch { border-color: #145a32; }
     .card-sangeet .event-tag { background: #0f5232; color: #e8f8f0; }
     .card-sangeet .event-title { color: #0b3d24; }
     .card-sangeet .event-datetime { color: #145a32; }
-    .card-sangeet .dress-code {
-      background: rgba(242, 252, 246, 0.88);
-      border: 1px dashed #145a32;
-      color: #0b3d24;
-    }
+    .card-sangeet .schedule-item { background: rgba(242, 252, 246, 0.88); border-left: 3.5px solid #145a32; }
+    .card-sangeet .schedule-name { color: #0b3d24; }
+    .card-sangeet .schedule-time { color: #145a32; }
+    .card-sangeet .dress-code { background: rgba(242, 252, 246, 0.88); border: 1px dashed #145a32; color: #0b3d24; }
 
-    /* PAGE 4: WEDDING CARD PALETTE */
+    /* PAGE 4: DAY 3 PALETTE */
     .card-wedding {
-      background: linear-gradient(165deg, rgba(255, 238, 236, 0.90) 0%, rgba(246, 202, 198, 0.86) 52%, rgba(245, 223, 186, 0.90) 100%);
+      background: linear-gradient(165deg, rgba(255, 238, 236, 0.92) 0%, rgba(246, 202, 198, 0.88) 52%, rgba(245, 223, 186, 0.92) 100%);
       border: 2px solid rgba(139, 30, 30, 0.6);
       box-shadow: 0 14px 32px rgba(102, 16, 16, 0.25);
     }
 
-    .card-wedding .card-top-banner {
-      height: 8px;
-      background: linear-gradient(90deg, #7a1212, #d4af37, #7a1212);
-    }
-
-    .card-wedding .card-image-wrapper {
-      background: radial-gradient(circle at center, rgba(252, 226, 222, 0.9) 0%, rgba(139, 30, 30, 0.25) 100%);
-    }
-
+    .card-wedding .card-top-banner { height: 8px; background: linear-gradient(90deg, #7a1212, #d4af37, #7a1212); }
+    .card-wedding .card-image-wrapper { background: radial-gradient(circle at center, rgba(252, 226, 222, 0.9) 0%, rgba(139, 30, 30, 0.25) 100%); }
     .card-wedding .card-arch { border-color: #8b1e1e; }
     .card-wedding .event-tag { background: #8b1e1e; color: #fff2f0; }
     .card-wedding .event-title { color: #5c1010; }
     .card-wedding .event-datetime { color: #8b1e1e; }
-    .card-wedding .dress-code {
-      background: rgba(255, 246, 245, 0.88);
-      border: 1px dashed #8b1e1e;
-      color: #4a0e0e;
-    }
+    .card-wedding .schedule-item { background: rgba(255, 246, 245, 0.88); border-left: 3.5px solid #8b1e1e; }
+    .card-wedding .schedule-name { color: #5c1010; }
+    .card-wedding .schedule-time { color: #8b1e1e; }
+    .card-wedding .dress-code { background: rgba(255, 246, 245, 0.88); border: 1px dashed #8b1e1e; color: #4a0e0e; }
 
     /* Shared Event Card Inner Layout */
     .card-image-wrapper {
@@ -671,7 +653,7 @@
     }
 
     .card-body {
-      padding: 20px 18px 24px;
+      padding: 20px 16px 22px;
       text-align: center;
       flex: 1;
       display: flex;
@@ -681,9 +663,8 @@
 
     .event-tag {
       display: inline-block;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 1.2px;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
       padding: 5px 14px;
       border-radius: 20px;
       font-weight: 700;
@@ -692,28 +673,58 @@
 
     .event-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.38rem;
+      font-size: 1.28rem;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      line-height: 1.25;
     }
 
     .event-datetime {
       font-size: 0.94rem;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
+    }
+
+    /* Multi-Ceremony Schedule Timeline List */
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .schedule-item {
+      padding: 8px 11px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .schedule-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .schedule-time {
+      font-size: 0.8rem;
+      font-weight: 600;
     }
 
     .event-desc {
-      font-size: 0.89rem;
+      font-size: 0.86rem;
       color: var(--text-dark);
-      line-height: 1.55;
-      margin-bottom: 16px;
+      line-height: 1.5;
+      margin-bottom: 14px;
     }
 
     .dress-code {
       padding: 10px 12px;
       border-radius: 12px;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
     }
 
     /* =========================================================================
@@ -804,7 +815,7 @@
       border: 1.5px solid rgba(184, 134, 11, 0.45);
       padding: 10px 12px;
       border-radius: 12px;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--text-dark);
       cursor: pointer;
@@ -876,16 +887,13 @@
        ========================================================================= -->
   <div id="landing-page">
     <div class="landing-card-stage">
-      <!-- Directly linked to your exact GitHub filename -->
       <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Shravan and Sheetal Welcome">
 
-      <!-- 1. Golden Circle Monogram -->
       <div class="landing-circle-monogram">
         <div class="landing-monogram-initials" id="txt-monogram-initials">S&S</div>
         <div class="landing-monogram-date" id="txt-monogram-date">2 DEC 2026</div>
       </div>
 
-      <!-- 2. Cream Floral Plaque Text Above Couple's Heads -->
       <div class="landing-plaque-text">
         <div class="landing-optional-top" id="txt-optional-top"></div>
         <div class="landing-intro" id="txt-intro">Together with their families</div>
@@ -900,7 +908,6 @@
         </div>
       </div>
 
-      <!-- 3. Button at the Bottom Near Feet -->
       <div class="landing-bottom-feet">
         <button class="open-invite-btn" id="txt-open-btn" onclick="openInvite()">Tap to open Invite</button>
         <div class="landing-footer-caption" id="txt-landing-footer">30th Nov – 2nd Dec 2026 • Bhopal, Madhya Pradesh</div>
@@ -912,10 +919,8 @@
        MAIN INVITE CONTAINER (PAGES 1 TO 5)
        ========================================================================= -->
   <div id="main-invite">
-    <!-- Visible Palace Background Layer -->
     <div class="palace-fixed-bg" id="palace-bg"></div>
 
-    <!-- Top Sticky Bar -->
     <div class="top-bar">
       <div class="top-bar-brand" id="txt-topbar-brand">SHRAVAN & SHEETAL</div>
       <div class="top-controls">
@@ -952,70 +957,73 @@
       </section>
 
       <div class="section-header">
-        <h2 id="txt-itinerary-heading">Royal Wedding Itinerary</h2>
+        <h2 id="txt-itinerary-heading">परिणयोत्सव • Wedding Itinerary</h2>
       </div>
 
       <div class="events-grid">
 
-        <!-- ================= PAGE 2: HALDI CARD ================= -->
+        <!-- ================= PAGE 2: DAY 1 (30th NOV) CARD ================= -->
         <div class="event-card card-haldi">
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-haldi" src="couple-haldi.png" alt="Haldi Ceremony">
+              <img id="img-haldi" src="couple-haldi.png" alt="Day 1 Celebrations">
             </div>
           </div>
           <div class="card-body">
             <div>
-              <span class="event-tag" id="txt-haldi-tag">Day 1 • Morning Glow</span>
-              <h3 class="event-title" id="txt-haldi-title">Kesariya Haldi</h3>
-              <div class="event-datetime" id="txt-haldi-date">30th November 2026 • 11:00 AM</div>
+              <span class="event-tag" id="txt-haldi-tag"></span>
+              <h3 class="event-title" id="txt-haldi-title"></h3>
+              <div class="event-datetime" id="txt-haldi-date"></div>
+              <div class="schedule-list" id="list-haldi-schedule"></div>
               <p class="event-desc" id="txt-haldi-desc"></p>
             </div>
             <div class="dress-code">
-              <strong id="txt-haldi-dc-label">Dress Code:</strong> <span id="txt-haldi-dc-text"></span>
+              <strong id="txt-haldi-dc-label"></strong> <span id="txt-haldi-dc-text"></span>
             </div>
           </div>
         </div>
 
-        <!-- ================= PAGE 3: MEHNDI & SANGEET CARD ================= -->
+        <!-- ================= PAGE 3: DAY 2 (1st DEC) CARD ================= -->
         <div class="event-card card-sangeet">
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-sangeet" src="couple-sangeet.png" alt="Mehndi and Sangeet">
+              <img id="img-sangeet" src="couple-sangeet.png" alt="Day 2 Celebrations">
             </div>
           </div>
           <div class="card-body">
             <div>
-              <span class="event-tag" id="txt-sangeet-tag">Day 2 • Musical Night</span>
-              <h3 class="event-title" id="txt-sangeet-title">Mehndi & Sangeet</h3>
-              <div class="event-datetime" id="txt-sangeet-date">1st December 2026 • 4:00 PM Onwards</div>
+              <span class="event-tag" id="txt-sangeet-tag"></span>
+              <h3 class="event-title" id="txt-sangeet-title"></h3>
+              <div class="event-datetime" id="txt-sangeet-date"></div>
+              <div class="schedule-list" id="list-sangeet-schedule"></div>
               <p class="event-desc" id="txt-sangeet-desc"></p>
             </div>
             <div class="dress-code">
-              <strong id="txt-sangeet-dc-label">Dress Code:</strong> <span id="txt-sangeet-dc-text"></span>
+              <strong id="txt-sangeet-dc-label"></strong> <span id="txt-sangeet-dc-text"></span>
             </div>
           </div>
         </div>
 
-        <!-- ================= PAGE 4: WEDDING & RECEPTION CARD ================= -->
+        <!-- ================= PAGE 4: DAY 3 (2nd DEC) CARD ================= -->
         <div class="event-card card-wedding">
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-wedding" src="couple-wedding.png" alt="Wedding and Reception">
+              <img id="img-wedding" src="couple-wedding.png" alt="Day 3 Celebrations">
             </div>
           </div>
           <div class="card-body">
             <div>
-              <span class="event-tag" id="txt-wedding-tag">Day 3 • The Royal Union</span>
-              <h3 class="event-title" id="txt-wedding-title">Wedding & Reception</h3>
-              <div class="event-datetime" id="txt-wedding-date">2nd December 2026 • 7:00 PM Onwards</div>
+              <span class="event-tag" id="txt-wedding-tag"></span>
+              <h3 class="event-title" id="txt-wedding-title"></h3>
+              <div class="event-datetime" id="txt-wedding-date"></div>
+              <div class="schedule-list" id="list-wedding-schedule"></div>
               <p class="event-desc" id="txt-wedding-desc"></p>
             </div>
             <div class="dress-code">
-              <strong id="txt-wedding-dc-label">Dress Code:</strong> <span id="txt-wedding-dc-text"></span>
+              <strong id="txt-wedding-dc-label"></strong> <span id="txt-wedding-dc-text"></span>
             </div>
           </div>
         </div>
@@ -1025,18 +1033,16 @@
       <!-- ================= PAGE 5: VENUE LOCATION & RSVP ================= -->
       <div class="venue-rsvp-grid">
 
-        <!-- Venue Location Card -->
         <div class="royal-info-card">
-          <h3 id="txt-venue-heading">Royal Venue & Celebrations</h3>
+          <h3 id="txt-venue-heading"></h3>
           <div style="font-size: 2.2rem; margin: 10px 0;">🏰</div>
           <div class="venue-name" id="txt-venue-name"></div>
           <div class="venue-address" id="txt-venue-address"></div>
-          <a id="link-venue-map" class="map-btn" target="_blank" rel="noopener noreferrer">📍 View Venue on Google Maps</a>
+          <a id="link-venue-map" class="map-btn" target="_blank" rel="noopener noreferrer"></a>
         </div>
 
-        <!-- RSVP Card (Select Joining Day) -->
         <div class="royal-info-card">
-          <h3 id="txt-rsvp-title">Confirm Your Royal Presence (RSVP)</h3>
+          <h3 id="txt-rsvp-title"></h3>
           <p style="font-size: 0.86rem; color: var(--text-body);" id="txt-rsvp-subtitle"></p>
 
           <form class="rsvp-form" onsubmit="submitRSVP(event)">
@@ -1051,7 +1057,7 @@
 
             <div class="day-options-group" id="rsvp-days-container"></div>
 
-            <button type="submit" class="rsvp-submit-btn" id="txt-rsvp-btn">💌 Send RSVP Confirmation</button>
+            <button type="submit" class="rsvp-submit-btn" id="txt-rsvp-btn"></button>
           </form>
         </div>
 
@@ -1066,7 +1072,18 @@
   </div>
 
   <script>
-    // Apply all configurable texts & images from INVITE_CONFIG at the top
+    function renderScheduleList(containerId, list) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      if (!list || !list.length) return;
+      list.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'schedule-item';
+        div.innerHTML = `<span class="schedule-name">${item.event}</span><span class="schedule-time">🕒 ${item.time}</span>`;
+        container.appendChild(div);
+      });
+    }
+
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
       document.getElementById('img-landing').src = L.imageFile;
@@ -1097,6 +1114,7 @@
       document.getElementById('txt-haldi-tag').textContent = P2.dayTag;
       document.getElementById('txt-haldi-title').textContent = P2.title;
       document.getElementById('txt-haldi-date').textContent = P2.dateTime;
+      renderScheduleList('list-haldi-schedule', P2.scheduleList);
       document.getElementById('txt-haldi-desc').textContent = P2.description;
       document.getElementById('txt-haldi-dc-label').textContent = P2.dressCodeLabel;
       document.getElementById('txt-haldi-dc-text').textContent = P2.dressCodeText;
@@ -1106,6 +1124,7 @@
       document.getElementById('txt-sangeet-tag').textContent = P3.dayTag;
       document.getElementById('txt-sangeet-title').textContent = P3.title;
       document.getElementById('txt-sangeet-date').textContent = P3.dateTime;
+      renderScheduleList('list-sangeet-schedule', P3.scheduleList);
       document.getElementById('txt-sangeet-desc').textContent = P3.description;
       document.getElementById('txt-sangeet-dc-label').textContent = P3.dressCodeLabel;
       document.getElementById('txt-sangeet-dc-text').textContent = P3.dressCodeText;
@@ -1115,6 +1134,7 @@
       document.getElementById('txt-wedding-tag').textContent = P4.dayTag;
       document.getElementById('txt-wedding-title').textContent = P4.title;
       document.getElementById('txt-wedding-date').textContent = P4.dateTime;
+      renderScheduleList('list-wedding-schedule', P4.scheduleList);
       document.getElementById('txt-wedding-desc').textContent = P4.description;
       document.getElementById('txt-wedding-dc-label').textContent = P4.dressCodeLabel;
       document.getElementById('txt-wedding-dc-text').textContent = P4.dressCodeText;
@@ -1248,7 +1268,7 @@
       const selectedDay = document.querySelector('input[name="joiningDay"]:checked').value;
       const phone = INVITE_CONFIG.venueAndRsvpPage.whatsappNumber.replace(/\D/g, '');
 
-      const message = `✨ *Royal Wedding RSVP — Shravan & Sheetal* ✨\n\n` +
+      const message = `✨ *Wedding RSVP — Shravan & Sheetal* ✨\n\n` +
                       `👤 *Name:* ${name}\n` +
                       `👥 *Guests:* ${guests}\n` +
                       `📅 *Joining From:* ${selectedDay}\n\n` +
