@@ -86,7 +86,7 @@
       venueAndRsvpPage: {
         venueSectionTitle: "Venue & Celebrations",
         venueImageFile: "Baghban Retreat.jpg", // Uses actual uploaded venue photo in background
-        venueName: "BAGHBAN RETREAT",
+        venueName: "",
         venueAddress: "Bhopal, Madhya Pradesh",
         googleMapsLink: "https://www.google.com/maps/place/BAGHBAN+RETREAT/@23.2578653,77.2333624,905m/data=!3m1!1e3!4m6!3m5!1s0x397c619f651aa49b:0xcabea3fa5763c2dd!8m2!3d23.2578653!4d77.2359373!16s%2Fg%2F11h6tmgmsn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
         mapButtonText: "📍 Click to view location on google maps",
@@ -926,28 +926,9 @@
     <div class="landing-card-stage">
       <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Shravan and Sheetal Welcome">
 
-      <!-- Built-in Metallic Gold Ganesha Vector inside Top Circle -->
+      <!-- Custom Uploaded Ganesha Image -->
       <div class="landing-circle-monogram">
-        <svg class="landing-ganesha-img" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#f3d474" />
-              <stop offset="50%" stop-color="#b8860b" />
-              <stop offset="100%" stop-color="#7a5200" />
-            </linearGradient>
-            <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="1" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-          <!-- Elegant Metallic Ganesha Silhouette & Trident/Modak Motif -->
-          <g fill="url(#goldGrad)" filter="url(#goldGlow)">
-            <!-- Om Symbol Base with Ganesha Trunk Abstraction -->
-            <path d="M60 15 C40 15 30 30 30 45 C30 55 38 65 48 68 L48 85 C48 90 52 95 60 95 C68 95 72 90 72 85 L72 68 C82 65 90 55 90 45 C90 30 80 15 60 15 Z M60 27 C70 27 76 35 76 45 C76 52 70 58 60 58 C50 58 44 52 44 45 C44 35 50 27 60 27 Z" />
-            <circle cx="60" cy="42" r="6" />
-            <path d="M52 75 L68 75 L60 92 Z" />
-          </g>
-        </svg>
+        <img id="img-ganesha" class="landing-ganesha-img" src="ganesha.png" alt="Shri Ganesha" style="width: 100%; height: 100%; object-fit: contain;">
       </div>
 
       <div class="landing-plaque-text">
@@ -1090,20 +1071,20 @@
 
       </div>
 
-      <!-- ================= PAGE 5: VENUE LOCATION (WITH VENUE BG) & RSVP ================= -->
+      <!-- ================= PAGE 5: VENUE LOCATION & RSVP ================= -->
+      <div class="section-header">
+        <h2 id="txt-venue-heading">Venue & Celebrations</h2>
+      </div>
+
       <div class="venue-rsvp-grid">
 
-        <!-- Venue Card with Uploaded Venue Photo Background -->
-        <div class="royal-info-card venue-card-bg" id="venue-card-wrapper" style="display: flex; flex-direction: column; justify-content: space-between;">
-          <div class="venue-card-content">
-            <h3 id="txt-venue-heading" style="color: #ffe89d; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size: 1.45rem;"></h3>
+        <!-- Venue Card with Uploaded Venue Photo Background (Completely Clean Image) -->
+        <div class="royal-info-card venue-card-bg" id="venue-card-wrapper" style="display: flex; flex-direction: column; justify-content: flex-end; padding: 24px 20px;">
+          <div class="venue-card-content" style="text-align: center; margin-bottom: 14px;">
+            <div class="venue-address" id="txt-venue-address" style="color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.95); font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px;"></div>
           </div>
-          <div class="venue-card-content" style="margin-top: auto; margin-bottom: auto;">
-            <div class="venue-name" id="txt-venue-name" style="color: #ffffff; text-shadow: 0 2px 5px rgba(0,0,0,0.9); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px;"></div>
-            <div class="venue-address" id="txt-venue-address" style="color: #fffaee; text-shadow: 0 1px 3px rgba(0,0,0,0.8); font-size: 1rem; font-weight: 600;"></div>
-          </div>
-          <div class="venue-card-content">
-            <a id="link-venue-map" class="map-btn" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></a>
+          <div class="venue-card-content" style="text-align: center;">
+            <a id="link-venue-map" target="_blank" rel="noopener noreferrer" style="display: inline-block; color: #ffe89d; text-decoration: underline; font-family: 'Cinzel', serif; font-size: 0.92rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.9); padding: 4px 0;">📍 Click to view location on google maps</a>
           </div>
         </div>
 
