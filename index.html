@@ -89,7 +89,7 @@
         venueName: "BAGHBAN RETREAT",
         venueAddress: "Bhopal, Madhya Pradesh",
         googleMapsLink: "https://www.google.com/maps/place/BAGHBAN+RETREAT/@23.2578653,77.2333624,905m/data=!3m1!1e3!4m6!3m5!1s0x397c619f651aa49b:0xcabea3fa5763c2dd!8m2!3d23.2578653!4d77.2359373!16s%2Fg%2F11h6tmgmsn?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
-        mapButtonText: "📍 View Venue on Google Maps",
+        mapButtonText: "📍 Click to view location on google maps",
 
         rsvpTitle: "Confirm Your Presence (RSVP)",
         rsvpSubtitle: "Please let us know which day you will be joining the celebrations from:",
@@ -757,7 +757,7 @@
       content: "";
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg, rgba(38, 18, 8, 0.82) 0%, rgba(68, 30, 10, 0.88) 100%);
+      background: linear-gradient(180deg, rgba(30, 15, 5, 0.35) 0%, rgba(45, 20, 8, 0.55) 100%);
       z-index: 1;
     }
 
@@ -1094,13 +1094,16 @@
       <div class="venue-rsvp-grid">
 
         <!-- Venue Card with Uploaded Venue Photo Background -->
-        <div class="royal-info-card venue-card-bg" id="venue-card-wrapper">
+        <div class="royal-info-card venue-card-bg" id="venue-card-wrapper" style="display: flex; flex-direction: column; justify-content: space-between;">
           <div class="venue-card-content">
-            <h3 id="txt-venue-heading"></h3>
-            <div style="font-size: 2.2rem; margin: 10px 0;">🏰</div>
-            <div class="venue-name" id="txt-venue-name"></div>
-            <div class="venue-address" id="txt-venue-address"></div>
-            <a id="link-venue-map" class="map-btn" target="_blank" rel="noopener noreferrer"></a>
+            <h3 id="txt-venue-heading" style="color: #ffe89d; text-shadow: 0 2px 4px rgba(0,0,0,0.8); font-size: 1.45rem;"></h3>
+          </div>
+          <div class="venue-card-content" style="margin-top: auto; margin-bottom: auto;">
+            <div class="venue-name" id="txt-venue-name" style="color: #ffffff; text-shadow: 0 2px 5px rgba(0,0,0,0.9); font-size: 1.4rem; font-weight: 700; margin-bottom: 6px;"></div>
+            <div class="venue-address" id="txt-venue-address" style="color: #fffaee; text-shadow: 0 1px 3px rgba(0,0,0,0.8); font-size: 1rem; font-weight: 600;"></div>
+          </div>
+          <div class="venue-card-content">
+            <a id="link-venue-map" class="map-btn" target="_blank" rel="noopener noreferrer" style="display: block; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5);"></a>
           </div>
         </div>
 
