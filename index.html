@@ -134,25 +134,25 @@
     }
 
     .landing-card-stage {
-      position: relative; height: 100%; width: 100%;
-      max-width: 100vw; max-height: 100dvh; overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75); background-color: #f9f1e4;
-      display: flex; justify-content: center; align-items: center;
+      position: relative; height: 100dvh; width: 100vw;
+      overflow: hidden; background-color: #241107;
     }
 
     .landing-bg-img { 
       width: 100%; height: 100%; 
-      object-fit: contain; object-position: center top; 
-      display: block; background-color: #241107; 
+      object-fit: cover; object-position: center top; 
+      display: block; 
     }
 
+    /* Top Circle Area */
     .landing-circle-monogram {
       position: absolute; top: 9.6%; left: 50%; transform: translateX(-50%);
       width: 21%; height: 12%; display: flex; justify-content: center; align-items: center;
     }
 
+    /* Shifted higher to fit below baked-in Ganesha */
     .landing-plaque-text {
-      position: absolute; top: 22.5%; left: 16%; width: 68%; height: 19.5%;
+      position: absolute; top: 18%; left: 16%; width: 68%; height: 19.5%;
       display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
     }
     .landing-optional-top { font-size: clamp(0.55rem, 1.2vh, 0.78rem); color: var(--gold-primary); font-weight: 600; margin-bottom: 2px; }
@@ -163,7 +163,7 @@
     .landing-city-highlight { color: var(--gold-dark); font-weight: 700; }
 
     .landing-bottom-feet {
-      position: absolute; bottom: 6%; left: 50%; transform: translateX(-50%);
+      position: absolute; bottom: 4%; left: 50%; transform: translateX(-50%);
       width: 86%; display: flex; justify-content: center; z-index: 10;
     }
     .open-invite-btn {
@@ -242,27 +242,43 @@
     @media (max-width: 768px) { .events-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 30px; } }
 
     .event-card { border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(8px); }
-    .card-haldi { background: linear-gradient(165deg, rgba(255, 247, 214, 0.92) 0%, rgba(253, 224, 142, 0.88) 55%, rgba(246, 202, 105, 0.90) 100%); border: 2px solid rgba(217, 140, 0, 0.6); }
-    .card-haldi .card-top-banner { height: 8px; background: linear-gradient(90deg, #ffaa00, #e65c00, #ffaa00); }
-    .card-haldi .card-image-wrapper { background: radial-gradient(circle at center, rgba(255, 240, 184, 0.9) 0%, rgba(245, 190, 75, 0.65) 100%); }
-    .card-haldi .card-arch { border-color: #d48800; }
-    .card-haldi .event-tag { background: #9e5800; color: #fff6d6; }
-    .card-haldi .schedule-item { background: rgba(255, 251, 235, 0.86); border-left: 3.5px solid #d48800; }
     
-    .card-sangeet { background: linear-gradient(165deg, rgba(232, 248, 238, 0.92) 0%, rgba(188, 229, 206, 0.88) 50%, rgba(236, 224, 180, 0.90) 100%); border: 2px solid rgba(19, 102, 59, 0.55); }
-    .card-sangeet .card-top-banner { height: 8px; background: linear-gradient(90deg, #0f5232, #d4af37, #0f5232); }
-    .card-sangeet .card-image-wrapper { background: radial-gradient(circle at center, rgba(215, 242, 226, 0.9) 0%, rgba(20, 90, 50, 0.28) 100%); }
-    .card-sangeet .card-arch { border-color: #145a32; }
-    .card-sangeet .event-tag { background: #0f5232; color: #e8f8f0; }
-    .card-sangeet .schedule-item { background: rgba(242, 252, 246, 0.88); border-left: 3.5px solid #145a32; }
-    .card-sangeet .dress-code { background: rgba(242, 252, 246, 0.88); border: 1px dashed #145a32; color: #0b3d24; }
+    /* Day 1 - Haldi Color Match */
+    .card-haldi { background: linear-gradient(165deg, #ebd197 0%, #e0b861 100%); border: 2px solid rgba(184, 134, 11, 0.6); }
+    .card-haldi .card-top-banner { height: 8px; background: linear-gradient(90deg, #d4af37, #b8860b, #d4af37); }
+    .card-haldi .card-image-wrapper { background: radial-gradient(circle at center, #f4e3b5 0%, #e0b861 100%); }
+    .card-haldi .card-arch { border-color: #a37213; }
+    .card-haldi .event-tag { background: #8a5a19; color: #fff9e6; }
+    .card-haldi .event-title { color: #3d260c; }
+    .card-haldi .event-datetime { color: #5c3c12; }
+    .card-haldi .schedule-item { background: rgba(255, 250, 235, 0.9); border-left: 4px solid #a37213; }
+    .card-haldi .schedule-name { color: #3d260c; }
+    .card-haldi .schedule-time { color: #5c3c12; }
+    
+    /* Day 2 - Sangeet Color Match */
+    .card-sangeet { background: linear-gradient(165deg, #c5dccb 0%, #a7c5af 100%); border: 2px solid rgba(46, 92, 58, 0.5); }
+    .card-sangeet .card-top-banner { height: 8px; background: linear-gradient(90deg, #2e5c3a, #5b8a68, #2e5c3a); }
+    .card-sangeet .card-image-wrapper { background: radial-gradient(circle at center, #d8e8dc 0%, #b2cfba 100%); }
+    .card-sangeet .card-arch { border-color: #2e5c3a; }
+    .card-sangeet .event-tag { background: #1a4224; color: #eaf2ed; }
+    .card-sangeet .event-title { color: #1a3322; }
+    .card-sangeet .event-datetime { color: #234f31; }
+    .card-sangeet .schedule-item { background: rgba(245, 252, 247, 0.9); border-left: 4px solid #2e5c3a; }
+    .card-sangeet .schedule-name { color: #1a3322; }
+    .card-sangeet .schedule-time { color: #234f31; }
+    .card-sangeet .dress-code { background: rgba(245, 252, 247, 0.9); border: 1px dashed #2e5c3a; color: #1a3322; }
 
+    /* Day 3 - Wedding Default */
     .card-wedding { background: linear-gradient(165deg, rgba(255, 238, 236, 0.92) 0%, rgba(246, 202, 198, 0.88) 52%, rgba(245, 223, 186, 0.92) 100%); border: 2px solid rgba(139, 30, 30, 0.6); }
     .card-wedding .card-top-banner { height: 8px; background: linear-gradient(90deg, #7a1212, #d4af37, #7a1212); }
     .card-wedding .card-image-wrapper { background: radial-gradient(circle at center, rgba(252, 226, 222, 0.9) 0%, rgba(139, 30, 30, 0.25) 100%); }
     .card-wedding .card-arch { border-color: #8b1e1e; }
     .card-wedding .event-tag { background: #8b1e1e; color: #fff2f0; }
+    .card-wedding .event-title { color: #5c1010; }
+    .card-wedding .event-datetime { color: #8b1e1e; }
     .card-wedding .schedule-item { background: rgba(255, 246, 245, 0.88); border-left: 3.5px solid #8b1e1e; }
+    .card-wedding .schedule-name { color: #5c1010; }
+    .card-wedding .schedule-time { color: #8b1e1e; }
 
     .card-image-wrapper { padding: 18px 18px 0; text-align: center; }
     .card-arch { width: 100%; aspect-ratio: 4 / 4.6; border-radius: 140px 140px 14px 14px; overflow: hidden; border: 3px solid var(--gold-bright); position: relative; }
@@ -290,10 +306,10 @@
       text-align: center; box-shadow: 0 14px 32px rgba(59, 28, 10, 0.2);
     }
     
-    /* Dedicated Venue Photo Card - Height Increased to 460px */
+    /* Dedicated Venue Photo Card - Height increased */
     .venue-card-bg {
       position: relative; overflow: hidden; background-size: cover; background-position: center;
-      min-height: 460px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+      min-height: 550px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
     }
     .venue-card-bg::before {
       content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -334,7 +350,7 @@
     <div class="landing-card-stage">
       <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Welcome">
       
-      <!-- Top Circle Area (Left blank so you can bake the Ganesha directly into your background image) -->
+      <!-- Blank Monogram Area -->
       <div class="landing-circle-monogram"></div>
 
       <div class="landing-plaque-text">
@@ -460,7 +476,6 @@
       </div>
 
       <!-- ================= PAGE 5: VENUE LOCATION & RSVP (VERTICAL STACK) ================= -->
-      <!-- HARDCODED HEADER TO FIX MISSING TEXT BUG -->
       <div class="section-header"><h2 id="txt-venue-heading">Venue &amp; Celebrations</h2></div>
       
       <div class="venue-rsvp-container">
