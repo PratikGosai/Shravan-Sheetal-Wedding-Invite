@@ -71,12 +71,14 @@
         showDressCode: false
       },
       venueAndRsvpPage: {
-        venueImageFile: "Baghban Retreat.jpg", 
+        venueSectionTitle: "Venue & Celebrations",
+        venueImageFile: "Baghban Retreat.jpg",
         venueAddress: "Bhopal, Madhya Pradesh",
         googleMapsLink: "https://www.google.com/maps/place/BAGHBAN+RETREAT/@23.2578653,77.2333624,905m/data=!3m1!1e3!4m6!3m5!1s0x397c619f651aa49b:0xcabea3fa5763c2dd!8m2!3d23.2578653!4d77.2359373!16s%2Fg%2F11h6tmgmsn",
+        mapButtonText: "📍 Click to view location on google maps",
         rsvpTitle: "Confirm Your Presence (RSVP)",
         rsvpSubtitle: "Please let us know which day you will be joining the celebrations from:",
-        whatsappNumber: "8085333341", 
+        whatsappNumber: "8085333341",
         joiningDaysOptions: [
           "30th Nov — Joining from Byav Haath & Teeka (All 3 Days)",
           "1st Dec — Joining from Haldatbaan, Mehndi & Anand Sandhya",
@@ -101,175 +103,502 @@
       --text-body: #54331d;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
 
     body, html {
-      width: 100%; min-height: 100%;
+      width: 100%;
+      min-height: 100%;
       font-family: 'Playfair Display', serif;
-      background-color: #241107; color: var(--text-dark);
-      overflow-x: hidden; scroll-behavior: smooth;
+      background-color: #241107;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    body.locked { overflow: hidden; height: 100vh; }
+
+    body.locked {
+      overflow: hidden;
+      height: 100vh;
+      height: 100dvh;
+    }
 
     #flower-canvas {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      pointer-events: none; z-index: 1500;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1500;
     }
 
     .petal-toggle-floating {
-      position: fixed; top: 14px; right: 14px; z-index: 1600;
-      background: rgba(54, 28, 12, 0.78); backdrop-filter: blur(6px);
-      color: #ffebaa; border: 1px solid rgba(230, 193, 90, 0.65);
-      padding: 6px 13px; border-radius: 30px; font-family: 'Playfair Display', serif;
-      font-size: 0.76rem; font-weight: 600; cursor: pointer;
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 1600;
+      background: rgba(54, 28, 12, 0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #ffebaa;
+      border: 1px solid rgba(230, 193, 90, 0.65);
+      padding: 6px 13px;
+      border-radius: 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     }
 
-    /* Landing Page - Responsive Fixing */
+    /* =========================================================================
+       LANDING PAGE (FULL BLEED + EXACT PLAQUE TEXT FIT)
+       ========================================================================= */
     #landing-page {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      z-index: 1000; display: flex; justify-content: center; align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background: #241107;
-      transition: transform 0.9s ease, opacity 0.9s ease;
+      transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
     }
 
     .landing-card-stage {
-      position: relative; height: 100dvh; width: 100vw;
-      overflow: hidden; background-color: #241107;
+      position: relative;
+      height: 100vh;
+      height: 100dvh;
+      width: calc(100dvh * 9 / 16);
+      max-width: 100vw;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+      background-color: #241107;
     }
 
-    .landing-bg-img { 
-      width: 100%; height: 100%; 
-      object-fit: cover; object-position: center top; 
-      display: block; 
+    @media (max-width: 600px) {
+      .landing-card-stage {
+        width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+      }
     }
 
-    /* Top Circle Area */
-    .landing-circle-monogram {
-      position: absolute; top: 9.6%; left: 50%; transform: translateX(-50%);
-      width: 21%; height: 12%; display: flex; justify-content: center; align-items: center;
+    /* Scales slightly to crop out the top dark bar baked into the edited image */
+    .landing-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 62%;
+      transform: scale(1.06);
+      transform-origin: center center;
+      display: block;
     }
 
-    /* Shifted higher to fit below baked-in Ganesha */
+    /* Fitted strictly between the divider line under Ganesha and the bottom floral motif */
     .landing-plaque-text {
-      position: absolute; top: 18%; left: 16%; width: 68%; height: 19.5%;
-      display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+      position: absolute;
+      top: 20.8%;
+      left: 15%;
+      width: 70%;
+      height: 16.5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 4px;
+      z-index: 5;
     }
-    .landing-optional-top { font-size: clamp(0.55rem, 1.2vh, 0.78rem); color: var(--gold-primary); font-weight: 600; margin-bottom: 2px; }
-    .landing-intro { font-style: italic; font-size: clamp(0.72rem, 1.65vh, 1rem); color: var(--text-body); margin-bottom: 3px; }
-    .landing-names { font-family: 'Cinzel', serif; font-size: clamp(1.1rem, 2.7vh, 1.65rem); font-weight: 700; color: var(--text-dark); line-height: 1.15; margin-bottom: 4px; }
-    .landing-names span { display: block; font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(0.82rem, 1.85vh, 1.15rem); color: var(--gold-primary); margin: 1px 0; }
-    .landing-invite-lines { font-size: clamp(0.67rem, 1.48vh, 0.9rem); color: var(--text-body); line-height: 1.35; }
-    .landing-city-highlight { color: var(--gold-dark); font-weight: 700; }
+
+    .landing-optional-top {
+      font-size: clamp(0.5rem, 1.1vh, 0.72rem);
+      color: var(--gold-primary);
+      font-weight: 600;
+      margin-bottom: 1px;
+    }
+
+    .landing-intro {
+      font-style: italic;
+      font-size: clamp(0.68rem, 1.45vh, 0.92rem);
+      color: var(--text-body);
+      margin-bottom: 2px;
+    }
+
+    .landing-names {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.02rem, 2.35vh, 1.45rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.08;
+      letter-spacing: 0.5px;
+      margin-bottom: 3px;
+    }
+
+    .landing-names span {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.75rem, 1.6vh, 1rem);
+      color: var(--gold-primary);
+      margin: 0;
+    }
+
+    .landing-invite-lines {
+      font-size: clamp(0.62rem, 1.32vh, 0.84rem);
+      color: var(--text-body);
+      line-height: 1.25;
+    }
+
+    .landing-city-highlight {
+      color: var(--gold-dark);
+      font-weight: 700;
+    }
 
     .landing-bottom-feet {
-      position: absolute; bottom: 4%; left: 50%; transform: translateX(-50%);
-      width: 86%; display: flex; justify-content: center; z-index: 10;
+      position: absolute;
+      bottom: 4.2%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 86%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
     }
+
     .open-invite-btn {
       background: linear-gradient(135deg, #f3d474 0%, #c59316 55%, #9c6e05 100%);
-      color: #261204; font-family: 'Cinzel', serif; font-size: clamp(0.92rem, 2vh, 1.12rem); font-weight: 700;
-      padding: 14px 36px; border: 1.5px solid #fff3c4; border-radius: 50px; cursor: pointer;
+      color: #261204;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.88rem, 1.9vh, 1.08rem);
+      font-weight: 700;
+      padding: 13px 34px;
+      border: 1.5px solid #fff3c4;
+      border-radius: 50px;
+      cursor: pointer;
       box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 15px rgba(230, 193, 90, 0.45);
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.6px;
     }
-    .open-invite-btn:active { transform: scale(0.96); }
 
-    /* Main Invite */
-    #main-invite { display: none; opacity: 0; transition: opacity 0.8s ease; min-height: 100vh; position: relative; padding-bottom: 70px; }
-    #main-invite.visible { display: block; opacity: 1; }
+    .open-invite-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* =========================================================================
+       MAIN INVITE CONTAINER
+       ========================================================================= */
+    #main-invite {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      min-height: 100vh;
+      position: relative;
+      padding-bottom: 70px;
+    }
+
+    #main-invite.visible {
+      display: block;
+      opacity: 1;
+    }
 
     .palace-fixed-bg {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
-      background-image: linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%), url("First Page.png");
-      background-position: center center; background-size: cover; filter: saturate(1.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-image:
+        linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%),
+        url("First Page.png");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: saturate(1.1);
     }
 
     .top-bar {
-      position: sticky; top: 0; z-index: 90; background: rgba(54, 24, 12, 0.88); backdrop-filter: blur(10px);
-      border-bottom: 1.5px solid rgba(230, 193, 90, 0.5); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      background: rgba(54, 24, 12, 0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1.5px solid rgba(230, 193, 90, 0.5);
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     }
-    .top-bar-brand { font-family: 'Cinzel', serif; font-weight: 700; color: #fae094; font-size: 0.88rem; letter-spacing: 1px; }
-    .top-controls { display: flex; gap: 8px; margin-right: 110px; }
-    .nav-pill-btn { background: rgba(255, 248, 231, 0.14); border: 1px solid rgba(230, 193, 90, 0.6); color: #fff5d6; padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; cursor: pointer; }
 
-    .container { max-width: 1020px; margin: 0 auto; padding: 0 14px; }
+    .top-bar-brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #fae094;
+      font-size: 0.88rem;
+      letter-spacing: 1px;
+    }
 
-    /* Hero Section */
+    .top-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-right: 110px;
+    }
+
+    .nav-pill-btn {
+      background: rgba(255, 248, 231, 0.14);
+      border: 1px solid rgba(230, 193, 90, 0.6);
+      color: #fff5d6;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 0 14px;
+    }
+
     .hero-card {
-      margin-top: 20px; background: linear-gradient(160deg, rgba(255, 242, 228, 0.84) 0%, rgba(248, 212, 198, 0.82) 55%, rgba(244, 220, 180, 0.86) 100%);
-      backdrop-filter: blur(8px); border: 2px solid rgba(184, 134, 11, 0.55); border-radius: 26px; padding: 28px 18px 30px; text-align: center;
-      box-shadow: 0 14px 36px rgba(66, 20, 14, 0.22); position: relative; overflow: hidden;
+      margin-top: 20px;
+      background: linear-gradient(160deg, rgba(255, 242, 228, 0.84) 0%, rgba(248, 212, 198, 0.82) 55%, rgba(244, 220, 180, 0.86) 100%);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 2px solid rgba(184, 134, 11, 0.55);
+      border-radius: 26px;
+      padding: 28px 18px 30px;
+      text-align: center;
+      box-shadow: 0 14px 36px rgba(66, 20, 14, 0.22);
+      position: relative;
+      overflow: hidden;
     }
-    .hero-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, #8b1e1e, #d4af37, #8b1e1e); }
-    .sanskrit-blessing { color: #8b1e1e; font-size: 1rem; font-weight: 700; margin-bottom: 14px; letter-spacing: 0.8px; }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, #8b1e1e, #d4af37, #8b1e1e);
+    }
+
+    .sanskrit-blessing {
+      color: #8b1e1e;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.8px;
+    }
+
     .jharokha-frame {
-      width: min(86vw, 330px); height: min(114vw, 430px); margin: 0 auto 20px; padding: 8px;
-      background: linear-gradient(135deg, #f0cf6e 0%, #b8860b 50%, #7d1919 100%); border-radius: 150px 150px 18px 18px; box-shadow: 0 14px 32px rgba(74, 20, 16, 0.28);
+      width: min(86vw, 330px);
+      height: min(114vw, 430px);
+      margin: 0 auto 20px;
+      padding: 8px;
+      background: linear-gradient(135deg, #f0cf6e 0%, #b8860b 50%, #7d1919 100%);
+      border-radius: 150px 150px 18px 18px;
+      box-shadow: 0 14px 32px rgba(74, 20, 16, 0.28);
     }
-    .jharokha-inner { width: 100%; height: 100%; background: #2e130c; border-radius: 142px 142px 12px 12px; overflow: hidden; }
-    .jharokha-inner img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
-    .hero-title { font-family: 'Cinzel', serif; font-size: clamp(1.75rem, 5.8vw, 2.5rem); color: #5c1313; margin-bottom: 6px; font-weight: 700; }
 
-    /* Reveal Card */
-    .reveal-date-card {
-      background: linear-gradient(145deg, #fffcf5, #f7ebd0); border: 2px dashed var(--gold-primary); border-radius: 20px;
-      padding: 22px 16px; max-width: 440px; margin: 20px auto 0; text-align: center; box-shadow: 0 8px 24px rgba(184, 134, 11, 0.2); cursor: pointer;
-      position: relative; z-index: 10;
+    .jharokha-inner {
+      width: 100%;
+      height: 100%;
+      background: #2e130c;
+      border-radius: 142px 142px 12px 12px;
+      overflow: hidden;
     }
-    .reveal-prompt h3 { font-family: 'Cinzel', serif; color: #8b1e1e; font-size: 1.15rem; margin-bottom: 4px; }
-    .reveal-prompt p { font-size: 0.88rem; color: var(--text-body); font-style: italic; }
-    .revealed-content { display: none; }
-    .revealed-content.show { display: block; animation: fadeIn 0.6s ease; }
-    @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    .revealed-date-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: #8b1e1e; font-weight: 700; margin-bottom: 14px; letter-spacing: 0.5px; }
-    
-    .countdown-box { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-    .time-pill { background: linear-gradient(145deg, rgba(255, 252, 245, 0.95), rgba(252, 232, 215, 0.92)); border: 1.5px solid rgba(139, 30, 30, 0.35); border-radius: 14px; padding: 10px 4px; box-shadow: 0 6px 14px rgba(92, 19, 19, 0.12); }
-    .time-pill span { display: block; font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; color: #8b1e1e; }
-    .time-pill small { font-size: 0.63rem; text-transform: uppercase; color: #63391e; font-weight: 600; }
 
-    /* Headers */
+    .jharokha-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 18%;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.75rem, 5.8vw, 2.5rem);
+      color: #5c1313;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
     .section-header {
-      text-align: center; margin: 34px 0 22px; background: rgba(54, 24, 12, 0.82); backdrop-filter: blur(6px);
-      padding: 12px 18px; border-radius: 40px; border: 1px solid rgba(230, 193, 90, 0.55); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+      text-align: center;
+      margin: 34px 0 22px;
+      background: rgba(54, 24, 12, 0.82);
+      backdrop-filter: blur(6px);
+      padding: 12px 18px;
+      border-radius: 40px;
+      border: 1px solid rgba(230, 193, 90, 0.55);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
     }
-    .section-header h2 { font-family: 'Cinzel', serif; font-size: clamp(1.2rem, 4.2vw, 1.7rem); color: #fae094; letter-spacing: 1px; }
 
-    /* Itinerary Grid */
-    .events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 34px; }
-    @media (max-width: 768px) { .events-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto 30px; } }
+    .section-header h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.2rem, 4.2vw, 1.7rem);
+      color: #fae094;
+      letter-spacing: 1px;
+    }
 
-    .event-card { border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; backdrop-filter: blur(8px); }
-    
-    /* Day 1 - Haldi Color Match */
-    .card-haldi { background: linear-gradient(165deg, #ebd197 0%, #e0b861 100%); border: 2px solid rgba(184, 134, 11, 0.6); }
-    .card-haldi .card-top-banner { height: 8px; background: linear-gradient(90deg, #d4af37, #b8860b, #d4af37); }
-    .card-haldi .card-image-wrapper { background: radial-gradient(circle at center, #f4e3b5 0%, #e0b861 100%); }
-    .card-haldi .card-arch { border-color: #a37213; }
-    .card-haldi .event-tag { background: #8a5a19; color: #fff9e6; }
-    .card-haldi .event-title { color: #3d260c; }
-    .card-haldi .event-datetime { color: #5c3c12; }
-    .card-haldi .schedule-item { background: rgba(255, 250, 235, 0.9); border-left: 4px solid #a37213; }
-    .card-haldi .schedule-name { color: #3d260c; }
-    .card-haldi .schedule-time { color: #5c3c12; }
-    
-    /* Day 2 - Sangeet Color Match */
-    .card-sangeet { background: linear-gradient(165deg, #c5dccb 0%, #a7c5af 100%); border: 2px solid rgba(46, 92, 58, 0.5); }
-    .card-sangeet .card-top-banner { height: 8px; background: linear-gradient(90deg, #2e5c3a, #5b8a68, #2e5c3a); }
-    .card-sangeet .card-image-wrapper { background: radial-gradient(circle at center, #d8e8dc 0%, #b2cfba 100%); }
-    .card-sangeet .card-arch { border-color: #2e5c3a; }
-    .card-sangeet .event-tag { background: #1a4224; color: #eaf2ed; }
-    .card-sangeet .event-title { color: #1a3322; }
-    .card-sangeet .event-datetime { color: #234f31; }
-    .card-sangeet .schedule-item { background: rgba(245, 252, 247, 0.9); border-left: 4px solid #2e5c3a; }
-    .card-sangeet .schedule-name { color: #1a3322; }
-    .card-sangeet .schedule-time { color: #234f31; }
-    .card-sangeet .dress-code { background: rgba(245, 252, 247, 0.9); border: 1px dashed #2e5c3a; color: #1a3322; }
+    /* Scratch / Reveal Date Card */
+    .reveal-date-card {
+      background: linear-gradient(145deg, #fffcf5, #f7ebd0);
+      border: 2px dashed var(--gold-primary);
+      border-radius: 20px;
+      padding: 22px 16px;
+      max-width: 440px;
+      margin: 20px auto 0;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(184, 134, 11, 0.2);
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
 
-    /* Day 3 - Wedding Default */
-    .card-wedding { background: linear-gradient(165deg, rgba(255, 238, 236, 0.92) 0%, rgba(246, 202, 198, 0.88) 52%, rgba(245, 223, 186, 0.92) 100%); border: 2px solid rgba(139, 30, 30, 0.6); }
+    .reveal-prompt h3 {
+      font-family: 'Cinzel', serif;
+      color: #8b1e1e;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .reveal-prompt p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      font-style: italic;
+    }
+
+    .revealed-content {
+      display: none;
+    }
+
+    .revealed-content.show {
+      display: block;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .revealed-date-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      color: #8b1e1e;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 0.5px;
+    }
+
+    .countdown-box {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .time-pill {
+      background: linear-gradient(145deg, rgba(255, 252, 245, 0.95), rgba(252, 232, 215, 0.92));
+      border: 1.5px solid rgba(139, 30, 30, 0.35);
+      border-radius: 14px;
+      padding: 10px 4px;
+      box-shadow: 0 6px 14px rgba(92, 19, 19, 0.12);
+    }
+
+    .time-pill span {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #8b1e1e;
+    }
+
+    .time-pill small {
+      font-size: 0.63rem;
+      text-transform: uppercase;
+      color: #63391e;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    /* =========================================================================
+       ITINERARY CARDS (UPDATED COLORS FOR DAY 1 & DAY 2 PHOTOS)
+       ========================================================================= */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .event-card {
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* DAY 1 CARD: Picked from Groom's Ivory-Cream Sherwani, Crimson-Maroon Stole & Marigold Gold */
+    .card-haldi {
+      background: linear-gradient(165deg, rgba(253, 246, 230, 0.95) 0%, rgba(242, 222, 182, 0.92) 55%, rgba(228, 195, 138, 0.94) 100%);
+      border: 2px solid rgba(138, 28, 28, 0.55);
+      box-shadow: 0 14px 32px rgba(90, 20, 15, 0.22);
+    }
+    .card-haldi .card-top-banner { height: 8px; background: linear-gradient(90deg, #7a1c1c, #d49b27, #7a1c1c); }
+    .card-haldi .card-image-wrapper { background: radial-gradient(circle at center, rgba(255, 248, 232, 0.95) 0%, rgba(212, 155, 39, 0.35) 100%); }
+    .card-haldi .card-arch { border-color: #8a1c1c; }
+    .card-haldi .event-tag { background: #7a1c1c; color: #fffaed; }
+    .card-haldi .event-title { color: #4a1212; }
+    .card-haldi .event-datetime { color: #8a1c1c; }
+    .card-haldi .schedule-item { background: rgba(255, 251, 242, 0.92); border-left: 4px solid #7a1c1c; }
+    .card-haldi .schedule-name { color: #4a1212; }
+    .card-haldi .schedule-time { color: #8a4b08; }
+
+    /* DAY 2 CARD: Picked from Couple's Powder Ice-Blue Outfits, Navy Blue & Marigold Orange-Gold */
+    .card-sangeet {
+      background: linear-gradient(165deg, rgba(235, 244, 250, 0.95) 0%, rgba(196, 220, 238, 0.92) 55%, rgba(172, 204, 228, 0.94) 100%);
+      border: 2px solid rgba(27, 59, 92, 0.55);
+      box-shadow: 0 14px 32px rgba(20, 45, 75, 0.22);
+    }
+    .card-sangeet .card-top-banner { height: 8px; background: linear-gradient(90deg, #1b3b5c, #e08b26, #1b3b5c); }
+    .card-sangeet .card-image-wrapper { background: radial-gradient(circle at center, rgba(240, 248, 255, 0.95) 0%, rgba(135, 178, 212, 0.45) 100%); }
+    .card-sangeet .card-arch { border-color: #1b3b5c; }
+    .card-sangeet .event-tag { background: #1b3b5c; color: #f0f7fc; }
+    .card-sangeet .event-title { color: #102a45; }
+    .card-sangeet .event-datetime { color: #1b3b5c; }
+    .card-sangeet .schedule-item { background: rgba(247, 251, 255, 0.92); border-left: 4px solid #1b3b5c; }
+    .card-sangeet .schedule-name { color: #102a45; }
+    .card-sangeet .schedule-time { color: #234b73; }
+    .card-sangeet .dress-code { background: rgba(247, 251, 255, 0.92); border: 1px dashed #1b3b5c; color: #102a45; }
+
+    /* DAY 3 CARD: Royal Wedding Crimson & Gold */
+    .card-wedding {
+      background: linear-gradient(165deg, rgba(255, 238, 236, 0.92) 0%, rgba(246, 202, 198, 0.88) 52%, rgba(245, 223, 186, 0.92) 100%);
+      border: 2px solid rgba(139, 30, 30, 0.6);
+      box-shadow: 0 14px 32px rgba(102, 16, 16, 0.25);
+    }
     .card-wedding .card-top-banner { height: 8px; background: linear-gradient(90deg, #7a1212, #d4af37, #7a1212); }
     .card-wedding .card-image-wrapper { background: radial-gradient(circle at center, rgba(252, 226, 222, 0.9) 0%, rgba(139, 30, 30, 0.25) 100%); }
     .card-wedding .card-arch { border-color: #8b1e1e; }
@@ -280,62 +609,262 @@
     .card-wedding .schedule-name { color: #5c1010; }
     .card-wedding .schedule-time { color: #8b1e1e; }
 
-    .card-image-wrapper { padding: 18px 18px 0; text-align: center; }
-    .card-arch { width: 100%; aspect-ratio: 4 / 4.6; border-radius: 140px 140px 14px 14px; overflow: hidden; border: 3px solid var(--gold-bright); position: relative; }
-    .card-arch img { width: 100%; height: 100%; object-fit: cover; object-position: center 16%; }
-    .card-body { padding: 20px 16px 22px; text-align: center; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
-    
-    .event-tag { display: inline-block; font-size: 0.72rem; letter-spacing: 1px; padding: 5px 14px; border-radius: 20px; font-weight: 700; margin-bottom: 10px; }
-    .event-title { font-family: 'Cinzel', serif; font-size: 1.28rem; font-weight: 700; margin-bottom: 4px; line-height: 1.25; }
-    .event-datetime { font-size: 0.94rem; font-weight: 700; margin-bottom: 14px; }
-    .schedule-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; text-align: left; }
-    .schedule-item { padding: 8px 11px; border-radius: 10px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; gap: 2px; }
-    .schedule-name { font-weight: 700; font-size: 0.9rem; }
-    .schedule-time { font-size: 0.8rem; font-weight: 600; }
-    .event-desc { font-size: 0.86rem; color: var(--text-dark); line-height: 1.5; margin-bottom: 14px; }
-    .dress-code { padding: 10px 12px; border-radius: 12px; font-size: 0.8rem; line-height: 1.4; }
+    .card-image-wrapper {
+      padding: 18px 18px 0;
+      text-align: center;
+    }
 
-    /* Vertical Venue & RSVP Container */
+    .card-arch {
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      border-radius: 140px 140px 14px 14px;
+      overflow: hidden;
+      border: 3px solid var(--gold-bright);
+      background: #fdf8ef;
+      position: relative;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
+    }
+
+    .card-arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 16%;
+    }
+
+    .card-body {
+      padding: 20px 16px 22px;
+      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .event-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .event-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.28rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      line-height: 1.25;
+    }
+
+    .event-datetime {
+      font-size: 0.94rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .schedule-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .schedule-item {
+      padding: 8px 11px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .schedule-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .schedule-time {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .event-desc {
+      font-size: 0.86rem;
+      color: var(--text-dark);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .dress-code {
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
+    /* =========================================================================
+       PAGE 5: VERTICAL VENUE PHOTO CARD -> RSVP CARD -> FOOTER
+       ========================================================================= */
     .venue-rsvp-container {
-      display: flex; flex-direction: column; gap: 24px; max-width: 480px; margin: 0 auto 34px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 480px;
+      margin: 0 auto 34px auto;
     }
 
     .royal-info-card {
       background: linear-gradient(160deg, rgba(255, 247, 235, 0.92) 0%, rgba(247, 224, 194, 0.9) 100%);
-      backdrop-filter: blur(8px); border: 2px solid rgba(184, 134, 11, 0.55); border-radius: 24px; padding: 26px 20px;
-      text-align: center; box-shadow: 0 14px 32px rgba(59, 28, 10, 0.2);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(184, 134, 11, 0.55);
+      border-radius: 24px;
+      padding: 26px 20px;
+      text-align: center;
+      box-shadow: 0 14px 32px rgba(59, 28, 10, 0.2);
     }
-    
-    /* Dedicated Venue Photo Card - Height increased */
+
     .venue-card-bg {
-      position: relative; overflow: hidden; background-size: cover; background-position: center;
-      min-height: 550px; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+      position: relative;
+      overflow: hidden;
+      background-image: url("Baghban Retreat.jpg");
+      background-size: cover;
+      background-position: center top;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 22px 18px;
     }
+
     .venue-card-bg::before {
-      content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(180deg, rgba(30, 15, 5, 0.1) 0%, rgba(45, 20, 8, 0.75) 100%); z-index: 1;
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(180deg, rgba(30, 15, 5, 0.05) 0%, rgba(30, 15, 5, 0.25) 65%, rgba(40, 18, 8, 0.82) 100%);
+      z-index: 1;
     }
-    .venue-card-content { position: relative; z-index: 2; text-align: center; width: 100%; }
-    
-    .royal-info-card h3 { font-family: 'Cinzel', serif; font-size: 1.35rem; color: #6e1818; margin-bottom: 10px; }
-    
-    .rsvp-form { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; text-align: left; }
-    .rsvp-input, .rsvp-select { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1.5px solid rgba(184, 134, 11, 0.5); background: rgba(255, 253, 249, 0.95); font-family: 'Playfair Display', serif; font-size: 0.92rem; }
-    .day-options-group { display: flex; flex-direction: column; gap: 8px; margin: 4px 0; }
-    .day-radio-label { display: flex; align-items: center; gap: 10px; background: rgba(255, 252, 245, 0.9); border: 1.5px solid rgba(184, 134, 11, 0.45); padding: 10px 12px; border-radius: 12px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
-    .day-radio-label input[type="radio"] { accent-color: #8b1e1e; width: 17px; height: 17px; }
-    .rsvp-submit-btn { width: 100%; background: linear-gradient(135deg, #d4af37, #9c6e05); color: #fff; font-family: 'Cinzel', serif; font-size: 0.98rem; font-weight: 700; padding: 14px 20px; border: none; border-radius: 40px; cursor: pointer; box-shadow: 0 6px 20px rgba(156, 110, 5, 0.35); margin-top: 6px; }
 
-    /* Footer */
+    .venue-card-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      width: 100%;
+    }
+
+    .royal-info-card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      color: #6e1818;
+      margin-bottom: 10px;
+    }
+
+    .rsvp-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 14px;
+      text-align: left;
+    }
+
+    .rsvp-input, .rsvp-select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(184, 134, 11, 0.5);
+      background: rgba(255, 253, 249, 0.95);
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      color: var(--text-dark);
+    }
+
+    .day-options-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 4px 0;
+    }
+
+    .day-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 252, 245, 0.9);
+      border: 1.5px solid rgba(184, 134, 11, 0.45);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .day-radio-label input[type="radio"] {
+      accent-color: #8b1e1e;
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .rsvp-submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d4af37, #9c6e05);
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(156, 110, 5, 0.35);
+      margin-top: 6px;
+    }
+
     .footer-note {
-      text-align: center; padding: 22px 18px; max-width: 480px; margin: 0 auto;
-      background: rgba(54, 24, 12, 0.85); backdrop-filter: blur(8px); border: 1.5px solid rgba(230, 193, 90, 0.55);
-      border-radius: 22px; color: #fff3d1; font-size: 0.92rem; line-height: 1.5;
+      text-align: center;
+      padding: 22px 18px;
+      max-width: 480px;
+      margin: 0 auto;
+      background: rgba(54, 24, 12, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(230, 193, 90, 0.55);
+      border-radius: 22px;
+      color: #fff3d1;
+      font-size: 0.92rem;
+      line-height: 1.5;
     }
-    .footer-note-closing { margin-bottom: 8px; display: block; }
-    .footer-note-contacts { font-size: 0.85rem; font-family: 'Cinzel', serif; letter-spacing: 0.6px; color: #fae094; display: block; margin-bottom: 6px; }
-    .footer-note-hashtag { font-size: 0.82rem; opacity: 0.85; display: block; }
 
+    .footer-note-closing {
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-note-contacts {
+      font-size: 0.85rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.6px;
+      color: #fae094;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer-note-hashtag {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto 30px;
+      }
+    }
   </style>
 </head>
 <body class="locked">
@@ -348,22 +877,19 @@
        ========================================================================= -->
   <div id="landing-page">
     <div class="landing-card-stage">
-      <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Welcome">
-      
-      <!-- Blank Monogram Area -->
-      <div class="landing-circle-monogram"></div>
+      <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Shravan and Sheetal Welcome">
 
       <div class="landing-plaque-text">
         <div class="landing-optional-top" id="txt-optional-top"></div>
-        <div class="landing-intro" id="txt-intro"></div>
+        <div class="landing-intro" id="txt-intro">Together with their families</div>
         <div class="landing-names">
-          <div id="txt-groom"></div>
-          <span id="txt-and">&</span>
-          <div id="txt-bride"></div>
+          <div id="txt-groom">SHRAVAN</div>
+          <span id="txt-and">&amp;</span>
+          <div id="txt-bride">SHEETAL</div>
         </div>
         <div class="landing-invite-lines">
-          <span id="txt-line1"></span><br>
-          <span id="txt-line2"></span> <span class="landing-city-highlight" id="txt-city"></span>
+          <span id="txt-line1">Request the honour of your presence at their</span><br>
+          <span id="txt-line2">Wedding Celebrations in</span> <span class="landing-city-highlight" id="txt-city">Bhopal</span>
         </div>
       </div>
 
@@ -374,12 +900,13 @@
   </div>
 
   <!-- =========================================================================
-       MAIN INVITE
+       MAIN INVITE CONTAINER (PAGES 1 TO 5)
        ========================================================================= -->
   <div id="main-invite">
     <div class="palace-fixed-bg" id="palace-bg"></div>
+
     <div class="top-bar">
-      <div class="top-bar-brand" id="txt-topbar-brand">SHRAVAN & SHEETAL</div>
+      <div class="top-bar-brand" id="txt-topbar-brand">SHRAVAN &amp; SHEETAL</div>
       <div class="top-controls">
         <button class="nav-pill-btn" id="music-toggle" onclick="toggleMusic()">🎵 Music</button>
       </div>
@@ -394,15 +921,17 @@
 
       <!-- ================= PAGE 1: FIRST PAGE ================= -->
       <section class="hero-card">
-        <div class="sanskrit-blessing" id="txt-blessing"></div>
+        <div class="sanskrit-blessing" id="txt-blessing">॥ श्री गणेशाय नमः ॥</div>
+
         <div class="jharokha-frame">
           <div class="jharokha-inner">
-            <img id="img-first-page" src="First Page.png" alt="Couple">
+            <img id="img-first-page" src="First Page.png" alt="Shravan and Sheetal">
           </div>
         </div>
-        <h1 class="hero-title" id="txt-hero-title"></h1>
 
-        <!-- Single-Tap Scratch / Reveal Date & Countdown Card -->
+        <h1 class="hero-title" id="txt-hero-title">Shravan &amp; Sheetal</h1>
+
+        <!-- Single-Tap Reveal Date & Countdown Card -->
         <div class="reveal-date-card" id="reveal-card" onclick="revealDateAndStartCelebration()">
           <div class="reveal-prompt" id="reveal-prompt">
             <h3>✨ Save the Date ✨</h3>
@@ -420,14 +949,20 @@
         </div>
       </section>
 
-      <!-- ================= ITINERARY CARDS ================= -->
-      <div class="section-header"><h2 id="txt-itinerary-heading"></h2></div>
+      <div class="section-header">
+        <h2 id="txt-itinerary-heading">परिणयोत्सव • Wedding Itinerary</h2>
+      </div>
+
       <div class="events-grid">
-        
-        <!-- Day 1 -->
+
+        <!-- ================= PAGE 2: DAY 1 CARD ================= -->
         <div class="event-card card-haldi">
           <div class="card-top-banner"></div>
-          <div class="card-image-wrapper"><div class="card-arch"><img id="img-haldi" src="couple-haldi.png" alt="Day 1"></div></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-haldi" src="couple-haldi.png" alt="Day 1 Celebrations">
+            </div>
+          </div>
           <div class="card-body">
             <div>
               <span class="event-tag" id="txt-haldi-tag"></span>
@@ -440,10 +975,14 @@
           </div>
         </div>
 
-        <!-- Day 2 -->
+        <!-- ================= PAGE 3: DAY 2 CARD ================= -->
         <div class="event-card card-sangeet">
           <div class="card-top-banner"></div>
-          <div class="card-image-wrapper"><div class="card-arch"><img id="img-sangeet" src="couple-sangeet.png" alt="Day 2"></div></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-sangeet" src="couple-sangeet.png" alt="Day 2 Celebrations">
+            </div>
+          </div>
           <div class="card-body">
             <div>
               <span class="event-tag" id="txt-sangeet-tag"></span>
@@ -458,10 +997,14 @@
           </div>
         </div>
 
-        <!-- Day 3 -->
+        <!-- ================= PAGE 4: DAY 3 CARD ================= -->
         <div class="event-card card-wedding">
           <div class="card-top-banner"></div>
-          <div class="card-image-wrapper"><div class="card-arch"><img id="img-wedding" src="couple-wedding.png" alt="Day 3"></div></div>
+          <div class="card-image-wrapper">
+            <div class="card-arch">
+              <img id="img-wedding" src="couple-wedding.png" alt="Day 3 Celebrations">
+            </div>
+          </div>
           <div class="card-body">
             <div>
               <span class="event-tag" id="txt-wedding-tag"></span>
@@ -473,39 +1016,47 @@
             <div></div>
           </div>
         </div>
+
       </div>
 
-      <!-- ================= PAGE 5: VENUE LOCATION & RSVP (VERTICAL STACK) ================= -->
-      <div class="section-header"><h2 id="txt-venue-heading">Venue &amp; Celebrations</h2></div>
-      
+      <!-- ================= PAGE 5: VENUE & RSVP (STACKED VERTICALLY) ================= -->
+      <div class="section-header">
+        <h2 id="txt-venue-heading">Venue &amp; Celebrations</h2>
+      </div>
+
       <div class="venue-rsvp-container">
-        
-        <!-- Clean Venue Photo Card -->
+
+        <!-- Venue Photo Card -->
         <div class="royal-info-card venue-card-bg" id="venue-card-wrapper">
-          <div class="venue-card-content" style="margin-bottom: 12px;">
-            <div id="txt-venue-address" style="color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.95); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.5px;"></div>
+          <div class="venue-card-content" style="margin-bottom: 10px;">
+            <div id="txt-venue-address" style="color: #ffffff; text-shadow: 0 2px 6px rgba(0,0,0,0.95); font-size: 1.15rem; font-weight: 700; letter-spacing: 0.5px;">Bhopal, Madhya Pradesh</div>
           </div>
           <div class="venue-card-content">
-            <a id="link-venue-map" target="_blank" rel="noopener noreferrer" style="display: inline-block; color: #ffe89d; text-decoration: underline; font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.9);"></a>
+            <a id="link-venue-map" target="_blank" rel="noopener noreferrer" style="display: inline-block; color: #ffe89d; text-decoration: underline; font-family: 'Cinzel', serif; font-size: 0.92rem; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.95); padding: 4px 0;">📍 Click to view location on google maps</a>
           </div>
         </div>
 
         <!-- RSVP Card -->
         <div class="royal-info-card">
-          <h3 id="txt-rsvp-title"></h3>
+          <h3 id="txt-rsvp-title">Confirm Your Presence (RSVP)</h3>
           <p style="font-size: 0.86rem; color: var(--text-body);" id="txt-rsvp-subtitle"></p>
+
           <form class="rsvp-form" onsubmit="submitRSVP(event)">
             <input type="text" id="rsvp-name" class="rsvp-input" placeholder="Your Full Name / Family Name" required>
+
             <select id="rsvp-guests" class="rsvp-select">
               <option value="1 Guest">Attending: 1 Guest</option>
               <option value="2 Guests" selected>Attending: 2 Guests (Couple)</option>
               <option value="3 Guests">Attending: 3 Guests</option>
               <option value="4+ Guests (Family)">Attending: 4+ Guests (Family)</option>
             </select>
+
             <div class="day-options-group" id="rsvp-days-container"></div>
+
             <button type="submit" class="rsvp-submit-btn" id="txt-rsvp-btn"></button>
           </form>
         </div>
+
       </div>
 
       <!-- Footer -->
@@ -546,7 +1097,8 @@
 
       const P1 = INVITE_CONFIG.firstPage;
       document.getElementById('img-first-page').src = P1.imageFile;
-      document.getElementById('palace-bg').style.backgroundImage = `linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%), url("${P1.imageFile}")`;
+      document.getElementById('palace-bg').style.backgroundImage =
+        `linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%), url("${P1.imageFile}")`;
       document.getElementById('txt-blessing').textContent = P1.topBlessing;
       document.getElementById('txt-hero-title').textContent = P1.coupleTitle;
       document.getElementById('txt-itinerary-heading').textContent = P1.itineraryHeading;
@@ -583,11 +1135,14 @@
       document.getElementById('txt-wedding-desc').textContent = P4.description;
 
       const P5 = INVITE_CONFIG.venueAndRsvpPage;
+      document.getElementById('txt-venue-heading').textContent = P5.venueSectionTitle || "Venue & Celebrations";
       document.getElementById('txt-venue-address').textContent = P5.venueAddress;
       const mapLink = document.getElementById('link-venue-map');
       mapLink.href = P5.googleMapsLink;
-      mapLink.textContent = "📍 Click to view location on google maps";
-      document.getElementById('venue-card-wrapper').style.backgroundImage = `url("${P5.venueImageFile}")`;
+      mapLink.textContent = P5.mapButtonText || "📍 Click to view location on google maps";
+      if (P5.venueImageFile) {
+        document.getElementById('venue-card-wrapper').style.backgroundImage = `url("${P5.venueImageFile}")`;
+      }
 
       document.getElementById('txt-rsvp-title').textContent = P5.rsvpTitle;
       document.getElementById('txt-rsvp-subtitle').textContent = P5.rsvpSubtitle;
@@ -608,22 +1163,29 @@
 
     applyConfig();
 
-    // Flowers
+    // Flower Shower Animation & Burst
     const canvas = document.getElementById('flower-canvas');
     const ctx = canvas.getContext('2d');
-    let petalsActive = false; 
+    let petalsActive = false;
     let petals = [];
 
-    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
     const petalColors = ['rgba(220, 38, 68, 0.75)', 'rgba(245, 166, 35, 0.78)', 'rgba(255, 210, 110, 0.8)', 'rgba(235, 115, 135, 0.75)'];
     for (let i = 0; i < 22; i++) {
       petals.push({
-        x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
-        r: 4 + Math.random() * 5, vy: 0.6 + Math.random() * 0.9, vx: -0.4 + Math.random() * 0.8,
-        angle: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.025,
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: 4 + Math.random() * 5,
+        vy: 0.6 + Math.random() * 0.9,
+        vx: -0.4 + Math.random() * 0.8,
+        angle: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 0.025,
         color: petalColors[i % petalColors.length]
       });
     }
@@ -632,10 +1194,22 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       if (petalsActive) {
         petals.forEach(p => {
-          p.y += p.vy; p.x += p.vx + Math.sin(p.angle) * 0.3; p.angle += p.spin;
-          if (p.y > canvas.height + 15) { p.y = -15; p.x = Math.random() * canvas.width; }
-          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.angle);
-          ctx.fillStyle = p.color; ctx.beginPath(); ctx.ellipse(0, 0, p.r, p.r * 0.6, 0, 0, Math.PI * 2); ctx.fill();
+          p.y += p.vy;
+          p.x += p.vx + Math.sin(p.angle) * 0.3;
+          p.angle += p.spin;
+
+          if (p.y > canvas.height + 15) {
+            p.y = -15;
+            p.x = Math.random() * canvas.width;
+          }
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, p.r, p.r * 0.6, 0, 0, Math.PI * 2);
+          ctx.fill();
           ctx.restore();
         });
       }
@@ -648,8 +1222,11 @@
         petals.push({
           x: window.innerWidth / 2 + (Math.random() - 0.5) * 200,
           y: window.innerHeight / 2 + (Math.random() - 0.5) * 100,
-          r: 5 + Math.random() * 6, vy: 1 + Math.random() * 2.5, vx: -2 + Math.random() * 4,
-          angle: Math.random() * Math.PI * 2, spin: (Math.random() - 0.5) * 0.04,
+          r: 5 + Math.random() * 6,
+          vy: 1 + Math.random() * 2.5,
+          vx: -2 + Math.random() * 4,
+          angle: Math.random() * Math.PI * 2,
+          spin: (Math.random() - 0.5) * 0.04,
           color: petalColors[Math.floor(Math.random() * petalColors.length)]
         });
       }
@@ -657,10 +1234,11 @@
 
     function togglePetals() {
       petalsActive = !petalsActive;
-      document.getElementById('petal-btn').textContent = petalsActive ? '🌸 Petals: ON' : '🌸 Petals: OFF';
+      const btn = document.getElementById('petal-btn');
+      btn.textContent = petalsActive ? '🌸 Petals: ON' : '🌸 Petals: OFF';
     }
 
-    // Logic
+    // Open Invite & Music Controls
     const audio = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-toggle');
     let isRevealed = false;
@@ -668,28 +1246,45 @@
     function openInvite() {
       const landingPage = document.getElementById('landing-page');
       const mainInvite = document.getElementById('main-invite');
+
       document.body.classList.remove('locked');
       mainInvite.classList.add('visible');
       window.scrollTo(0, 0);
+
       landingPage.style.transform = 'translateY(-100%)';
       landingPage.style.opacity = '0';
-      setTimeout(() => { landingPage.style.display = 'none'; }, 900);
+
+      setTimeout(() => {
+        landingPage.style.display = 'none';
+      }, 900);
     }
 
     function revealDateAndStartCelebration() {
       if (isRevealed) return;
       isRevealed = true;
+
       document.getElementById('reveal-prompt').style.display = 'none';
       document.getElementById('revealed-content').classList.add('show');
+
       petalsActive = true;
       triggerPetalBurst();
       document.getElementById('petal-btn').textContent = '🌸 Petals: ON';
-      audio.play().then(() => { musicBtn.textContent = '⏸ Pause'; }).catch(() => { musicBtn.textContent = '🎵 Music'; });
+
+      audio.play().then(() => {
+        musicBtn.textContent = '⏸ Pause';
+      }).catch(() => {
+        musicBtn.textContent = '🎵 Music';
+      });
     }
 
     function toggleMusic() {
-      if (audio.paused) { audio.play(); musicBtn.textContent = '⏸ Pause'; } 
-      else { audio.pause(); musicBtn.textContent = '🎵 Music'; }
+      if (audio.paused) {
+        audio.play();
+        musicBtn.textContent = '⏸ Pause';
+      } else {
+        audio.pause();
+        musicBtn.textContent = '🎵 Music';
+      }
     }
 
     function submitRSVP(e) {
@@ -698,21 +1293,35 @@
       const guests = document.getElementById('rsvp-guests').value;
       const selectedDay = document.querySelector('input[name="joiningDay"]:checked').value;
       const phone = INVITE_CONFIG.venueAndRsvpPage.whatsappNumber.replace(/\D/g, '');
-      const message = `✨ *Wedding RSVP — Shravan & Sheetal* ✨\n\n👤 *Name:* ${name}\n👥 *Guests:* ${guests}\n📅 *Joining From:* ${selectedDay}\n\nSee you in Bhopal! 🎉`;
-      const waUrl = phone ? `https://wa.me/${phone}?text=` + encodeURIComponent(message) : `https://wa.me/?text=` + encodeURIComponent(message);
+
+      const message = `✨ *Wedding RSVP — Shravan & Sheetal* ✨\n\n` +
+                      `👤 *Name:* ${name}\n` +
+                      `👥 *Guests:* ${guests}\n` +
+                      `📅 *Joining From:* ${selectedDay}\n\n` +
+                      `See you in Bhopal! 🎉`;
+
+      const waUrl = phone
+        ? `https://wa.me/${phone}?text=` + encodeURIComponent(message)
+        : `https://wa.me/?text=` + encodeURIComponent(message);
+
       window.open(waUrl, '_blank');
     }
 
-    // Countdown
     const weddingDate = new Date(INVITE_CONFIG.firstPage.weddingCountdownDate).getTime();
     function updateCountdown() {
       const now = new Date().getTime();
       const diff = weddingDate - now;
       if (diff <= 0) return;
-      document.getElementById('days').textContent = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-      document.getElementById('hours').textContent = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      document.getElementById('mins').textContent = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-      document.getElementById('secs').textContent = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(d).padStart(2, '0');
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('mins').textContent = String(m).padStart(2, '0');
+      document.getElementById('secs').textContent = String(s).padStart(2, '0');
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
