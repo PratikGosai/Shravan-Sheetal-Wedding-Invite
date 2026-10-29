@@ -78,7 +78,7 @@
         mapButtonText: "📍 Click to view location on google maps",
         rsvpTitle: "Confirm Your Presence (RSVP)",
         rsvpSubtitle: "Please let us know which day you will be joining the celebrations from:",
-        whatsappNumber: "+91-8085333341",
+        whatsappNumber: "918085333341",
         joiningDaysOptions: [
           "30th Nov — Joining from Byav Haath & Teeka (All 3 Days)",
           "1st Dec — Joining from Haldatbaan, Mehndi & Anand Sandhya",
@@ -93,6 +93,7 @@
   </script>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
 
     :root {
@@ -234,15 +235,17 @@
     }
 
     .landing-names {
-      font-family: 'Cinzel', serif;
-      font-size: clamp(1.02rem, 2.35vh, 1.45rem);
-      font-weight: 700;
-      color: var(--text-dark);
-      line-height: 1.08;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.4rem, 3.2vh, 1.9rem);
+      font-weight: 400;
+      background: linear-gradient(180deg, #f3d474 0%, #b8860b 50%, #7a5200 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.15;
       letter-spacing: 0.5px;
       margin-bottom: 3px;
     }
-
+    
     .landing-names span {
       display: block;
       font-family: 'Playfair Display', serif;
@@ -950,7 +953,7 @@
       </section>
 
       <div class="section-header">
-        <h2 id="txt-itinerary-heading">परिणयोत्सव • Wedding Itinerary</h2>
+        <h2 id="txt-itinerary-heading">Wedding Itinerary</h2>
       </div>
 
       <div class="events-grid">
@@ -1300,11 +1303,7 @@
                       `📅 *Joining From:* ${selectedDay}\n\n` +
                       `See you in Bhopal! 🎉`;
 
-      const waUrl = phone
-        ? `https://wa.me/${phone}?text=` + encodeURIComponent(message)
-        : `https://wa.me/?text=` + encodeURIComponent(message);
-
-      window.open(waUrl, '_blank');
+      window.location.href = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
     }
 
     const weddingDate = new Date(INVITE_CONFIG.firstPage.weddingCountdownDate).getTime();
