@@ -12,7 +12,6 @@
     const INVITE_CONFIG = {
       landingPage: {
         imageFile: "Landing Page.png",
-        ganeshaImageFile: "ganesha.png", 
         topOptionalLine: "",
         introLine: "Together with their families",
         groomName: "SHRAVAN",
@@ -150,14 +149,6 @@
     .landing-circle-monogram {
       position: absolute; top: 9.6%; left: 50%; transform: translateX(-50%);
       width: 21%; height: 12%; display: flex; justify-content: center; align-items: center;
-    }
-    
-    /* Ganesha Fake Checkerboard Fix */
-    .landing-ganesha-img {
-      width: 95%; height: 95%; object-fit: cover; 
-      border-radius: 50%; /* Crops out the square checkerboard corners */
-      mix-blend-mode: multiply;
-      filter: sepia(1) hue-rotate(-30deg) saturate(3); /* Tints the fake background to gold to hide it */
     }
 
     .landing-plaque-text {
@@ -343,10 +334,8 @@
     <div class="landing-card-stage">
       <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Welcome">
       
-      <!-- Ganesha Image -->
-      <div class="landing-circle-monogram">
-        <img id="img-ganesha" class="landing-ganesha-img" src="ganesha.png" alt="Shri Ganesha">
-      </div>
+      <!-- Top Circle Area (Left blank so you can bake the Ganesha directly into your background image) -->
+      <div class="landing-circle-monogram"></div>
 
       <div class="landing-plaque-text">
         <div class="landing-optional-top" id="txt-optional-top"></div>
@@ -530,7 +519,6 @@
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
       document.getElementById('img-landing').src = L.imageFile;
-      document.getElementById('img-ganesha').src = L.ganeshaImageFile;
       document.getElementById('txt-optional-top').textContent = L.topOptionalLine;
       document.getElementById('txt-intro').textContent = L.introLine;
       document.getElementById('txt-groom').textContent = L.groomName;
