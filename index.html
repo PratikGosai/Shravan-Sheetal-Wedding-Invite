@@ -11,11 +11,10 @@
   <script>
     const INVITE_CONFIG = {
       landingPage: {
-        imageFile: "Elegant Gold Wedding Invitation-1.png",
-        buttonText: "Tap to open Invite"
+        imageFile: "Landing Page.png"
       },
       firstPage: {
-        imageFile: "First Page.jpeg",
+        imageFile: "First Page.png",
         topBlessing: "॥ श्री गणेशाय नमः ॥",
         coupleTitle: "Shravan & Sheetal",
         tagline: "A Celebration of Love in the City of Lakes, Bhopal",
@@ -85,6 +84,7 @@
   </script>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
 
     :root {
@@ -148,7 +148,7 @@
     }
 
     /* =========================================================================
-       LANDING PAGE (FULL BLEED WITH BAKED-IN IMAGE)
+       LANDING PAGE (FULL BLEED + EXACT IMAGE FIT)
        ========================================================================= */
     #landing-page {
       position: fixed;
@@ -188,40 +188,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center center;
+      object-position: center 62%;
+      transform: scale(1.06);
+      transform-origin: center center;
       display: block;
-    }
-
-    .landing-bottom-feet {
-      position: absolute;
-      bottom: 4.2%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 86%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      z-index: 10;
-    }
-
-    .open-invite-btn {
-      background: linear-gradient(135deg, #f3d474 0%, #c59316 55%, #9c6e05 100%);
-      color: #261204;
-      font-family: 'Cinzel', serif;
-      font-size: clamp(0.88rem, 1.9vh, 1.08rem);
-      font-weight: 700;
-      padding: 13px 34px;
-      border: 1.5px solid #fff3c4;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), 0 0 15px rgba(230, 193, 90, 0.45);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      letter-spacing: 0.6px;
-    }
-
-    .open-invite-btn:active {
-      transform: scale(0.96);
     }
 
     /* =========================================================================
@@ -799,15 +769,11 @@
   <button class="petal-toggle-floating" id="petal-btn" onclick="togglePetals()">🌸 Petals: ON</button>
 
   <!-- =========================================================================
-       PAGE 0: LANDING PAGE (PRE-BAKED DESIGN IMAGE)
+       PAGE 0: LANDING PAGE (FULL SCREEN CLICKABLE IMAGE)
        ========================================================================= -->
-  <div id="landing-page">
+  <div id="landing-page" onclick="openInvite()" style="cursor: pointer;">
     <div class="landing-card-stage">
-      <img id="img-landing" class="landing-bg-img" src="Elegant Gold Wedding Invitation-1.png" alt="Shravan and Sheetal Welcome">
-
-      <div class="landing-bottom-feet">
-        <button class="open-invite-btn" id="txt-open-btn" onclick="openInvite()">Tap to open Invite</button>
-      </div>
+      <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Welcome">
     </div>
   </div>
 
@@ -997,7 +963,6 @@
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
       document.getElementById('img-landing').src = L.imageFile;
-      document.getElementById('txt-open-btn').textContent = L.buttonText;
 
       const P1 = INVITE_CONFIG.firstPage;
       document.getElementById('img-first-page').src = P1.imageFile;
