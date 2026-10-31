@@ -11,11 +11,10 @@
   <script>
     const INVITE_CONFIG = {
       landingPage: {
-        imageFile: "Elegant Gold Wedding Invitation-1.png
-"
+        imageFile: "Elegant Gold Wedding Invitation-1.png"
       },
       firstPage: {
-        imageFile: "First Page.png",
+        imageFile: "First Page.jpeg",
         topBlessing: "॥ श्री गणेशाय नमः ॥",
         coupleTitle: "Shravan & Sheetal",
         tagline: "A Celebration of Love in the City of Lakes, Bhopal",
@@ -84,10 +83,11 @@
     };
   </script>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
+  <style>
     :root {
       --gold-primary: #b8860b;
       --gold-bright: #e6c15a;
@@ -106,7 +106,7 @@
     body, html {
       width: 100%;
       min-height: 100%;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       background-color: #241107;
       color: var(--text-dark);
       overflow-x: hidden;
@@ -141,7 +141,7 @@
       border: 1px solid rgba(230, 193, 90, 0.65);
       padding: 6px 13px;
       border-radius: 30px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 0.76rem;
       font-weight: 600;
       cursor: pointer;
@@ -149,7 +149,7 @@
     }
 
     /* =========================================================================
-       LANDING PAGE (FULL BLEED + EXACT IMAGE FIT)
+       LANDING PAGE (FULL SCREEN CLICKABLE + BAKED-IN IMAGE)
        ========================================================================= */
     #landing-page {
       position: fixed;
@@ -163,6 +163,7 @@
       justify-content: center;
       align-items: center;
       background: #241107;
+      cursor: pointer;
       transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
     }
 
@@ -189,9 +190,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 62%;
-      transform: scale(1.06);
-      transform-origin: center center;
+      object-position: center center;
       display: block;
     }
 
@@ -267,7 +266,7 @@
       font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', Georgia, serif;
     }
 
     .container {
@@ -673,7 +672,7 @@
       border-radius: 12px;
       border: 1.5px solid rgba(184, 134, 11, 0.5);
       background: rgba(255, 253, 249, 0.95);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', Georgia, serif;
       font-size: 0.92rem;
       color: var(--text-dark);
     }
@@ -770,11 +769,11 @@
   <button class="petal-toggle-floating" id="petal-btn" onclick="togglePetals()">🌸 Petals: ON</button>
 
   <!-- =========================================================================
-       PAGE 0: LANDING PAGE (FULL SCREEN CLICKABLE IMAGE)
+       PAGE 0: LANDING PAGE (FULL SCREEN CLICKABLE IMAGE - NO EXTRA BUTTON)
        ========================================================================= -->
-  <div id="landing-page" onclick="openInvite()" style="cursor: pointer;">
+  <div id="landing-page" onclick="openInvite()">
     <div class="landing-card-stage">
-      <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Welcome">
+      <img id="img-landing" class="landing-bg-img" src="Elegant Gold Wedding Invitation-1.png" alt="Tap to open Invite">
     </div>
   </div>
 
@@ -791,7 +790,7 @@
       </div>
     </div>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" preload="none" loop>
       <source src="song.mp3" type="audio/mpeg">
       <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
     </audio>
@@ -804,7 +803,7 @@
 
         <div class="jharokha-frame">
           <div class="jharokha-inner">
-            <img id="img-first-page" src="First Page.png" alt="Shravan and Sheetal">
+            <img id="img-first-page" src="First Page.png" alt="Shravan and Sheetal" decoding="async">
           </div>
         </div>
 
@@ -839,7 +838,7 @@
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-haldi" src="couple-haldi.png" alt="Day 1 Celebrations">
+              <img id="img-haldi" src="couple-haldi.png" alt="Day 1 Celebrations" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="card-body">
@@ -859,7 +858,7 @@
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-sangeet" src="couple-sangeet.png" alt="Day 2 Celebrations">
+              <img id="img-sangeet" src="couple-sangeet.png" alt="Day 2 Celebrations" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="card-body">
@@ -881,7 +880,7 @@
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-wedding" src="couple-wedding.png" alt="Day 3 Celebrations">
+              <img id="img-wedding" src="couple-wedding.png" alt="Day 3 Celebrations" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="card-body">
@@ -949,8 +948,46 @@
   </div>
 
   <script>
+    // Safe DOM helper so missing elements never crash the script
+    function setText(id, text) {
+      const el = document.getElementById(id);
+      if (el && text !== undefined) el.textContent = text;
+    }
+
+    // Smart image loader that tries configured name + fallback extensions (.png, .jpeg, .jpg)
+    function setSmartImage(imgId, primaryFile, extraFallbacks = []) {
+      const imgEl = document.getElementById(imgId);
+      if (!imgEl || !primaryFile) return;
+
+      const dotIdx = primaryFile.lastIndexOf('.');
+      const baseName = dotIdx !== -1 ? primaryFile.substring(0, dotIdx) : primaryFile;
+
+      const candidates = [
+        primaryFile,
+        baseName + '.png',
+        baseName + '.jpeg',
+        baseName + '.jpg',
+        ...extraFallbacks
+      ];
+      // Remove duplicates
+      const uniqueCandidates = [...new Set(candidates)];
+      let attempt = 0;
+
+      imgEl.onerror = function() {
+        attempt++;
+        if (attempt < uniqueCandidates.length) {
+          imgEl.src = uniqueCandidates[attempt];
+        } else {
+          imgEl.onerror = null;
+        }
+      };
+
+      imgEl.src = uniqueCandidates[0];
+    }
+
     function renderScheduleList(containerId, list) {
       const container = document.getElementById(containerId);
+      if (!container) return;
       container.innerHTML = '';
       if (!list || !list.length) return;
       list.forEach(item => {
@@ -963,72 +1000,94 @@
 
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
-      document.getElementById('img-landing').src = L.imageFile;
+      setSmartImage('img-landing', L.imageFile, [
+        'Elegant Gold Wedding Invitation-1.png',
+        'Elegant Gold Wedding Invitation-1.jpeg',
+        'Elegant Gold Wedding Invitation-1.jpg',
+        'Landing Page.png',
+        'Landing Page.jpeg',
+        'Landing Page.jpg'
+      ]);
 
       const P1 = INVITE_CONFIG.firstPage;
-      document.getElementById('img-first-page').src = P1.imageFile;
-      document.getElementById('palace-bg').style.backgroundImage =
-        `linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%), url("${P1.imageFile}")`;
-      document.getElementById('txt-blessing').textContent = P1.topBlessing;
-      document.getElementById('txt-hero-title').textContent = P1.coupleTitle;
-      document.getElementById('txt-itinerary-heading').textContent = P1.itineraryHeading;
+      setSmartImage('img-first-page', P1.imageFile, [
+        'First Page.png',
+        'First Page.jpeg',
+        'First Page.jpg'
+      ]);
+      const palaceBg = document.getElementById('palace-bg');
+      if (palaceBg) {
+        palaceBg.style.backgroundImage =
+          `linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%), url("${P1.imageFile}")`;
+      }
+      setText('txt-blessing', P1.topBlessing);
+      setText('txt-hero-title', P1.coupleTitle);
+      setText('txt-itinerary-heading', P1.itineraryHeading);
 
       const P2 = INVITE_CONFIG.haldiPage;
-      document.getElementById('img-haldi').src = P2.imageFile;
-      document.getElementById('txt-haldi-tag').textContent = P2.dayTag;
-      document.getElementById('txt-haldi-title').textContent = P2.title;
-      document.getElementById('txt-haldi-date').textContent = P2.dateTime;
+      setSmartImage('img-haldi', P2.imageFile);
+      setText('txt-haldi-tag', P2.dayTag);
+      setText('txt-haldi-title', P2.title);
+      setText('txt-haldi-date', P2.dateTime);
       renderScheduleList('list-haldi-schedule', P2.scheduleList);
-      document.getElementById('txt-haldi-desc').textContent = P2.description;
+      setText('txt-haldi-desc', P2.description);
 
       const P3 = INVITE_CONFIG.sangeetPage;
-      document.getElementById('img-sangeet').src = P3.imageFile;
-      document.getElementById('txt-sangeet-tag').textContent = P3.dayTag;
-      document.getElementById('txt-sangeet-title').textContent = P3.title;
-      document.getElementById('txt-sangeet-date').textContent = P3.dateTime;
+      setSmartImage('img-sangeet', P3.imageFile);
+      setText('txt-sangeet-tag', P3.dayTag);
+      setText('txt-sangeet-title', P3.title);
+      setText('txt-sangeet-date', P3.dateTime);
       renderScheduleList('list-sangeet-schedule', P3.scheduleList);
-      document.getElementById('txt-sangeet-desc').textContent = P3.description;
-      if (P3.showDressCode) {
-        document.getElementById('txt-sangeet-dc-label').textContent = P3.dressCodeLabel;
-        document.getElementById('txt-sangeet-dc-text').textContent = P3.dressCodeText;
-        document.getElementById('box-sangeet-dc').style.display = 'block';
-      } else {
-        document.getElementById('box-sangeet-dc').style.display = 'none';
+      setText('txt-sangeet-desc', P3.description);
+      const sangeetDcBox = document.getElementById('box-sangeet-dc');
+      if (sangeetDcBox) {
+        if (P3.showDressCode) {
+          setText('txt-sangeet-dc-label', P3.dressCodeLabel);
+          setText('txt-sangeet-dc-text', P3.dressCodeText);
+          sangeetDcBox.style.display = 'block';
+        } else {
+          sangeetDcBox.style.display = 'none';
+        }
       }
 
       const P4 = INVITE_CONFIG.weddingPage;
-      document.getElementById('img-wedding').src = P4.imageFile;
-      document.getElementById('txt-wedding-tag').textContent = P4.dayTag;
-      document.getElementById('txt-wedding-title').textContent = P4.title;
-      document.getElementById('txt-wedding-date').textContent = P4.dateTime;
+      setSmartImage('img-wedding', P4.imageFile);
+      setText('txt-wedding-tag', P4.dayTag);
+      setText('txt-wedding-title', P4.title);
+      setText('txt-wedding-date', P4.dateTime);
       renderScheduleList('list-wedding-schedule', P4.scheduleList);
-      document.getElementById('txt-wedding-desc').textContent = P4.description;
+      setText('txt-wedding-desc', P4.description);
 
       const P5 = INVITE_CONFIG.venueAndRsvpPage;
-      document.getElementById('txt-venue-heading').textContent = P5.venueSectionTitle || "Venue & Celebrations";
-      document.getElementById('txt-venue-address').textContent = P5.venueAddress;
+      setText('txt-venue-heading', P5.venueSectionTitle || "Venue & Celebrations");
+      setText('txt-venue-address', P5.venueAddress);
       const mapLink = document.getElementById('link-venue-map');
-      mapLink.href = P5.googleMapsLink;
-      mapLink.textContent = P5.mapButtonText || "📍 Click to view location on google maps";
-      if (P5.venueImageFile) {
-        document.getElementById('venue-card-wrapper').style.backgroundImage = `url("${P5.venueImageFile}")`;
+      if (mapLink) {
+        mapLink.href = P5.googleMapsLink;
+        mapLink.textContent = P5.mapButtonText || "📍 Click to view location on google maps";
+      }
+      const venueCard = document.getElementById('venue-card-wrapper');
+      if (venueCard && P5.venueImageFile) {
+        venueCard.style.backgroundImage = `url("${P5.venueImageFile}")`;
       }
 
-      document.getElementById('txt-rsvp-title').textContent = P5.rsvpTitle;
-      document.getElementById('txt-rsvp-subtitle').textContent = P5.rsvpSubtitle;
-      document.getElementById('txt-rsvp-btn').textContent = P5.rsvpButtonText;
-      document.getElementById('txt-closing-line').textContent = P5.closingLine;
-      document.getElementById('txt-contact-numbers').textContent = P5.contactNumbersDisplay;
-      document.getElementById('txt-hashtag').textContent = P5.hashtag;
+      setText('txt-rsvp-title', P5.rsvpTitle);
+      setText('txt-rsvp-subtitle', P5.rsvpSubtitle);
+      setText('txt-rsvp-btn', P5.rsvpButtonText);
+      setText('txt-closing-line', P5.closingLine);
+      setText('txt-contact-numbers', P5.contactNumbersDisplay);
+      setText('txt-hashtag', P5.hashtag);
 
       const daysContainer = document.getElementById('rsvp-days-container');
-      daysContainer.innerHTML = '';
-      P5.joiningDaysOptions.forEach((optionText, idx) => {
-        const label = document.createElement('label');
-        label.className = 'day-radio-label';
-        label.innerHTML = `<input type="radio" name="joiningDay" value="${optionText}" ${idx === 0 ? 'checked' : ''}> <span>${optionText}</span>`;
-        daysContainer.appendChild(label);
-      });
+      if (daysContainer && P5.joiningDaysOptions) {
+        daysContainer.innerHTML = '';
+        P5.joiningDaysOptions.forEach((optionText, idx) => {
+          const label = document.createElement('label');
+          label.className = 'day-radio-label';
+          label.innerHTML = `<input type="radio" name="joiningDay" value="${optionText}" ${idx === 0 ? 'checked' : ''}> <span>${optionText}</span>`;
+          daysContainer.appendChild(label);
+        });
+      }
     }
 
     applyConfig();
@@ -1105,7 +1164,7 @@
     function togglePetals() {
       petalsActive = !petalsActive;
       const btn = document.getElementById('petal-btn');
-      btn.textContent = petalsActive ? '🌸 Petals: ON' : '🌸 Petals: OFF';
+      if (btn) btn.textContent = petalsActive ? '🌸 Petals: ON' : '🌸 Petals: OFF';
     }
 
     // Open Invite & Music Controls
@@ -1118,42 +1177,49 @@
       const mainInvite = document.getElementById('main-invite');
 
       document.body.classList.remove('locked');
-      mainInvite.classList.add('visible');
+      if (mainInvite) mainInvite.classList.add('visible');
       window.scrollTo(0, 0);
 
-      landingPage.style.transform = 'translateY(-100%)';
-      landingPage.style.opacity = '0';
-
-      setTimeout(() => {
-        landingPage.style.display = 'none';
-      }, 900);
+      if (landingPage) {
+        landingPage.style.transform = 'translateY(-100%)';
+        landingPage.style.opacity = '0';
+        setTimeout(() => {
+          landingPage.style.display = 'none';
+        }, 900);
+      }
     }
 
     function revealDateAndStartCelebration() {
       if (isRevealed) return;
       isRevealed = true;
 
-      document.getElementById('reveal-prompt').style.display = 'none';
-      document.getElementById('revealed-content').classList.add('show');
+      const promptEl = document.getElementById('reveal-prompt');
+      const revealedEl = document.getElementById('revealed-content');
+      if (promptEl) promptEl.style.display = 'none';
+      if (revealedEl) revealedEl.classList.add('show');
 
       petalsActive = true;
       triggerPetalBurst();
-      document.getElementById('petal-btn').textContent = '🌸 Petals: ON';
+      const petalBtn = document.getElementById('petal-btn');
+      if (petalBtn) petalBtn.textContent = '🌸 Petals: ON';
 
-      audio.play().then(() => {
-        musicBtn.textContent = '⏸ Pause';
-      }).catch(() => {
-        musicBtn.textContent = '🎵 Music';
-      });
+      if (audio) {
+        audio.play().then(() => {
+          if (musicBtn) musicBtn.textContent = '⏸ Pause';
+        }).catch(() => {
+          if (musicBtn) musicBtn.textContent = '🎵 Music';
+        });
+      }
     }
 
     function toggleMusic() {
+      if (!audio) return;
       if (audio.paused) {
         audio.play();
-        musicBtn.textContent = '⏸ Pause';
+        if (musicBtn) musicBtn.textContent = '⏸ Pause';
       } else {
         audio.pause();
-        musicBtn.textContent = '🎵 Music';
+        if (musicBtn) musicBtn.textContent = '🎵 Music';
       }
     }
 
@@ -1184,10 +1250,10 @@
       const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const s = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById('days').textContent = String(d).padStart(2, '0');
-      document.getElementById('hours').textContent = String(h).padStart(2, '0');
-      document.getElementById('mins').textContent = String(m).padStart(2, '0');
-      document.getElementById('secs').textContent = String(s).padStart(2, '0');
+      setText('days', String(d).padStart(2, '0'));
+      setText('hours', String(h).padStart(2, '0'));
+      setText('mins', String(m).padStart(2, '0'));
+      setText('secs', String(s).padStart(2, '0'));
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
