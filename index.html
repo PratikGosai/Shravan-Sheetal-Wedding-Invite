@@ -11,19 +11,11 @@
   <script>
     const INVITE_CONFIG = {
       landingPage: {
-        imageFile: "Landing Page.png",
-        topOptionalLine: "",
-        introLine: "Together with their families",
-        groomName: "Shravan",
-        andSymbol: "&",
-        brideName: "Sheetal",
-        inviteTextLine1: "Request the honour of your presence at their",
-        inviteTextLine2: "Wedding Celebrations in",
-        cityHighlight: "Bhopal",
+        imageFile: "Elegant Gold Wedding Invitation-1.png",
         buttonText: "Tap to open Invite"
       },
       firstPage: {
-        imageFile: "First Page.png",
+        imageFile: "First Page.jpeg",
         topBlessing: "॥ श्री गणेशाय नमः ॥",
         coupleTitle: "Shravan & Sheetal",
         tagline: "A Celebration of Love in the City of Lakes, Bhopal",
@@ -31,7 +23,7 @@
         itineraryHeading: "Wedding Itinerary"
       },
       haldiPage: {
-        imageFile: "couple-haldi.png",
+        imageFile: "Tilak.png",
         dayTag: "Day 1 • शुभ आरंभ",
         title: "Shubh Aarambh & Teeka",
         dateTime: "Monday, 30th November 2026",
@@ -39,7 +31,7 @@
           { event: "॥ ब्याव हाथ ॥ (Byav Haath)", time: "11:30 AM (सुबह 11.30 बजे)" },
           { event: "॥ टीका दस्तूर ॥ (Teeka Dastoor)", time: "6:30 PM (शाम 6.30 बजे)" }
         ],
-        description: "Join us for the auspicious beginning of our wedding rituals followed by the evening Teeka Dastoor celebrations.",
+        description: "The auspicious beginning of our wedding rituals followed by the evening Teeka Dastoor celebrations.",
         showDressCode: false
       },
       sangeetPage: {
@@ -93,7 +85,6 @@
   </script>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@500;600;700&display=swap');
 
     :root {
@@ -157,7 +148,7 @@
     }
 
     /* =========================================================================
-       LANDING PAGE (FULL BLEED + EXACT PLAQUE TEXT FIT)
+       LANDING PAGE (FULL BLEED WITH BAKED-IN IMAGE)
        ========================================================================= */
     #landing-page {
       position: fixed;
@@ -193,77 +184,12 @@
       }
     }
 
-    /* Scales slightly to crop out the top dark bar baked into the edited image */
     .landing-bg-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 62%;
-      transform: scale(1.06);
-      transform-origin: center center;
+      object-position: center center;
       display: block;
-    }
-
-    /* Fitted strictly between the divider line under Ganesha and the bottom floral motif */
-    .landing-plaque-text {
-      position: absolute;
-      top: 20.8%;
-      left: 15%;
-      width: 70%;
-      height: 16.5%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 4px;
-      z-index: 5;
-    }
-
-    .landing-optional-top {
-      font-size: clamp(0.5rem, 1.1vh, 0.72rem);
-      color: var(--gold-primary);
-      font-weight: 600;
-      margin-bottom: 1px;
-    }
-
-    .landing-intro {
-      font-style: italic;
-      font-size: clamp(0.68rem, 1.45vh, 0.92rem);
-      color: var(--text-body);
-      margin-bottom: 2px;
-    }
-
-    .landing-names {
-      font-family: 'Great Vibes', cursive;
-      font-size: clamp(1.4rem, 3.2vh, 1.9rem);
-      font-weight: 400;
-      background: linear-gradient(180deg, #f3d474 0%, #b8860b 50%, #7a5200 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.15;
-      letter-spacing: 0.5px;
-      margin-bottom: 3px;
-    }
-    
-    .landing-names span {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: clamp(0.75rem, 1.6vh, 1rem);
-      color: var(--gold-primary);
-      margin: 0;
-    }
-
-    .landing-invite-lines {
-      font-size: clamp(0.62rem, 1.32vh, 0.84rem);
-      color: var(--text-body);
-      line-height: 1.25;
-    }
-
-    .landing-city-highlight {
-      color: var(--gold-dark);
-      font-weight: 700;
     }
 
     .landing-bottom-feet {
@@ -544,7 +470,7 @@
     }
 
     /* =========================================================================
-       ITINERARY CARDS (UPDATED COLORS FOR DAY 1 & DAY 2 PHOTOS)
+       ITINERARY CARDS
        ========================================================================= */
     .events-grid {
       display: grid;
@@ -563,7 +489,6 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* DAY 1 CARD: Picked from Groom's Ivory-Cream Sherwani, Crimson-Maroon Stole & Marigold Gold */
     .card-haldi {
       background: linear-gradient(165deg, rgba(253, 246, 230, 0.95) 0%, rgba(242, 222, 182, 0.92) 55%, rgba(228, 195, 138, 0.94) 100%);
       border: 2px solid rgba(138, 28, 28, 0.55);
@@ -579,7 +504,6 @@
     .card-haldi .schedule-name { color: #4a1212; }
     .card-haldi .schedule-time { color: #8a4b08; }
 
-    /* DAY 2 CARD: Picked from Couple's Powder Ice-Blue Outfits, Navy Blue & Marigold Orange-Gold */
     .card-sangeet {
       background: linear-gradient(165deg, rgba(235, 244, 250, 0.95) 0%, rgba(196, 220, 238, 0.92) 55%, rgba(172, 204, 228, 0.94) 100%);
       border: 2px solid rgba(27, 59, 92, 0.55);
@@ -596,7 +520,6 @@
     .card-sangeet .schedule-time { color: #234b73; }
     .card-sangeet .dress-code { background: rgba(247, 251, 255, 0.92); border: 1px dashed #1b3b5c; color: #102a45; }
 
-    /* DAY 3 CARD: Royal Wedding Crimson & Gold */
     .card-wedding {
       background: linear-gradient(165deg, rgba(255, 238, 236, 0.92) 0%, rgba(246, 202, 198, 0.88) 52%, rgba(245, 223, 186, 0.92) 100%);
       border: 2px solid rgba(139, 30, 30, 0.6);
@@ -876,25 +799,11 @@
   <button class="petal-toggle-floating" id="petal-btn" onclick="togglePetals()">🌸 Petals: ON</button>
 
   <!-- =========================================================================
-       PAGE 0: LANDING PAGE
+       PAGE 0: LANDING PAGE (PRE-BAKED DESIGN IMAGE)
        ========================================================================= -->
   <div id="landing-page">
     <div class="landing-card-stage">
-      <img id="img-landing" class="landing-bg-img" src="Landing Page.png" alt="Shravan and Sheetal Welcome">
-
-      <div class="landing-plaque-text">
-        <div class="landing-optional-top" id="txt-optional-top"></div>
-        <div class="landing-intro" id="txt-intro">Together with their families</div>
-        <div class="landing-names">
-          <div id="txt-groom">SHRAVAN</div>
-          <span id="txt-and">&amp;</span>
-          <div id="txt-bride">SHEETAL</div>
-        </div>
-        <div class="landing-invite-lines">
-          <span id="txt-line1">Request the honour of your presence at their</span><br>
-          <span id="txt-line2">Wedding Celebrations in</span> <span class="landing-city-highlight" id="txt-city">Bhopal</span>
-        </div>
-      </div>
+      <img id="img-landing" class="landing-bg-img" src="Elegant Gold Wedding Invitation-1.png" alt="Shravan and Sheetal Welcome">
 
       <div class="landing-bottom-feet">
         <button class="open-invite-btn" id="txt-open-btn" onclick="openInvite()">Tap to open Invite</button>
@@ -1088,14 +997,6 @@
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
       document.getElementById('img-landing').src = L.imageFile;
-      document.getElementById('txt-optional-top').textContent = L.topOptionalLine;
-      document.getElementById('txt-intro').textContent = L.introLine;
-      document.getElementById('txt-groom').textContent = L.groomName;
-      document.getElementById('txt-and').textContent = L.andSymbol;
-      document.getElementById('txt-bride').textContent = L.brideName;
-      document.getElementById('txt-line1').textContent = L.inviteTextLine1;
-      document.getElementById('txt-line2').textContent = L.inviteTextLine2;
-      document.getElementById('txt-city').textContent = L.cityHighlight;
       document.getElementById('txt-open-btn').textContent = L.buttonText;
 
       const P1 = INVITE_CONFIG.firstPage;
