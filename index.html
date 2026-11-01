@@ -11,7 +11,8 @@
   <script>
     const INVITE_CONFIG = {
       landingPage: {
-        imageFile: "Elegant Gold Wedding Invitation-1.png"
+        imageFile: "Elegant Gold Wedding Invitation-1.png",
+        buttonText: "Tap to open Invite"
       },
       firstPage: {
         imageFile: "First Page.jpeg",
@@ -129,11 +130,18 @@
       z-index: 1500;
     }
 
-    .petal-toggle-floating {
+    /* Floating Top Controls (Visible on both Landing Page & Main Invite) */
+    .floating-top-controls {
       position: fixed;
-      top: 14px;
+      top: 12px;
       right: 14px;
       z-index: 1600;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .floating-pill-btn {
       background: rgba(54, 28, 12, 0.78);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -149,7 +157,7 @@
     }
 
     /* =========================================================================
-       LANDING PAGE (FULL SCREEN CLICKABLE + BAKED-IN IMAGE)
+       LANDING PAGE (TAP SCREEN FOR MUSIC, TAP BUTTON TO OPEN INVITE)
        ========================================================================= */
     #landing-page {
       position: fixed;
@@ -163,7 +171,6 @@
       justify-content: center;
       align-items: center;
       background: #241107;
-      cursor: pointer;
       transition: transform 0.9s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.9s ease;
     }
 
@@ -194,6 +201,42 @@
       display: block;
     }
 
+    .landing-bottom-feet {
+      position: absolute;
+      bottom: 4.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 86%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Ribbon button matching the warm ivory plaque & dusty rose/mauve lehenga theme */
+    .open-invite-btn {
+      background: linear-gradient(135deg, rgba(253, 246, 234, 0.96) 0%, rgba(242, 224, 226, 0.96) 50%, rgba(226, 198, 206, 0.96) 100%);
+      color: #4a2130;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(0.88rem, 1.9vh, 1.06rem);
+      font-weight: 700;
+      padding: 13px 36px;
+      border: 1.5px solid #b8860b;
+      outline: 3px solid rgba(253, 246, 234, 0.35);
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(42, 16, 24, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.8px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .open-invite-btn:active {
+      transform: scale(0.96);
+    }
+
     /* =========================================================================
        MAIN INVITE CONTAINER
        ========================================================================= */
@@ -220,7 +263,7 @@
       z-index: -1;
       background-image:
         linear-gradient(180deg, rgba(252, 244, 232, 0.46) 0%, rgba(245, 228, 205, 0.56) 50%, rgba(252, 244, 232, 0.50) 100%),
-        url("First Page.png");
+        url("First Page.jpeg");
       background-position: center center;
       background-size: cover;
       background-repeat: no-repeat;
@@ -235,7 +278,7 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1.5px solid rgba(230, 193, 90, 0.5);
-      padding: 12px 16px;
+      padding: 13px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -248,25 +291,6 @@
       color: #fae094;
       font-size: 0.88rem;
       letter-spacing: 1px;
-    }
-
-    .top-controls {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-right: 110px;
-    }
-
-    .nav-pill-btn {
-      background: rgba(255, 248, 231, 0.14);
-      border: 1px solid rgba(230, 193, 90, 0.6);
-      color: #fff5d6;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      font-family: 'Playfair Display', Georgia, serif;
     }
 
     .container {
@@ -763,17 +787,31 @@
     }
   </style>
 </head>
-<body class="locked">
+<body class="locked" onclick="startMusicOnScreenTap()">
 
   <canvas id="flower-canvas"></canvas>
-  <button class="petal-toggle-floating" id="petal-btn" onclick="togglePetals()">🌸 Petals: ON</button>
+
+  <!-- Top Floating Controls: Music Toggle & Petals Toggle (Always accessible) -->
+  <div class="floating-top-controls">
+    <button class="floating-pill-btn" id="music-toggle" onclick="event.stopPropagation(); toggleMusic();">🎵 Music</button>
+    <button class="floating-pill-btn" id="petal-btn" onclick="event.stopPropagation(); togglePetals();">🌸 Petals: ON</button>
+  </div>
+
+  <audio id="bg-music" preload="auto" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- =========================================================================
-       PAGE 0: LANDING PAGE (FULL SCREEN CLICKABLE IMAGE - NO EXTRA BUTTON)
+       PAGE 0: LANDING PAGE (TAP ANYWHERE FOR MUSIC, TAP BUTTON TO OPEN)
        ========================================================================= -->
-  <div id="landing-page" onclick="openInvite()">
+  <div id="landing-page">
     <div class="landing-card-stage">
-      <img id="img-landing" class="landing-bg-img" src="Elegant Gold Wedding Invitation-1.png" alt="Tap to open Invite">
+      <img id="img-landing" class="landing-bg-img" src="Elegant Gold Wedding Invitation-1_2.png" alt="Shravan and Sheetal Welcome">
+
+      <div class="landing-bottom-feet">
+        <button class="open-invite-btn" id="txt-open-btn" onclick="event.stopPropagation(); openInvite();">Tap to open Invite</button>
+      </div>
     </div>
   </div>
 
@@ -785,15 +823,7 @@
 
     <div class="top-bar">
       <div class="top-bar-brand" id="txt-topbar-brand">SHRAVAN &amp; SHEETAL</div>
-      <div class="top-controls">
-        <button class="nav-pill-btn" id="music-toggle" onclick="toggleMusic()">🎵 Music</button>
-      </div>
     </div>
-
-    <audio id="bg-music" preload="none" loop>
-      <source src="song.mp3" type="audio/mpeg">
-      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-    </audio>
 
     <div class="container">
 
@@ -803,7 +833,7 @@
 
         <div class="jharokha-frame">
           <div class="jharokha-inner">
-            <img id="img-first-page" src="First Page.png" alt="Shravan and Sheetal" decoding="async">
+            <img id="img-first-page" src="First Page.jpeg" alt="Shravan and Sheetal" decoding="async">
           </div>
         </div>
 
@@ -838,7 +868,7 @@
           <div class="card-top-banner"></div>
           <div class="card-image-wrapper">
             <div class="card-arch">
-              <img id="img-haldi" src="couple-haldi.png" alt="Day 1 Celebrations" loading="lazy" decoding="async">
+              <img id="img-haldi" src="Tilak.png" alt="Day 1 Celebrations" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="card-body">
@@ -969,7 +999,6 @@
         baseName + '.jpg',
         ...extraFallbacks
       ];
-      // Remove duplicates
       const uniqueCandidates = [...new Set(candidates)];
       let attempt = 0;
 
@@ -1001,6 +1030,9 @@
     function applyConfig() {
       const L = INVITE_CONFIG.landingPage;
       setSmartImage('img-landing', L.imageFile, [
+        'Elegant Gold Wedding Invitation-1_2.png',
+        'Elegant Gold Wedding Invitation-1_2.jpeg',
+        'Elegant Gold Wedding Invitation-1_2.jpg',
         'Elegant Gold Wedding Invitation-1.png',
         'Elegant Gold Wedding Invitation-1.jpeg',
         'Elegant Gold Wedding Invitation-1.jpg',
@@ -1008,11 +1040,12 @@
         'Landing Page.jpeg',
         'Landing Page.jpg'
       ]);
+      setText('txt-open-btn', L.buttonText || "Tap to open Invite");
 
       const P1 = INVITE_CONFIG.firstPage;
       setSmartImage('img-first-page', P1.imageFile, [
-        'First Page.png',
         'First Page.jpeg',
+        'First Page.png',
         'First Page.jpg'
       ]);
       const palaceBg = document.getElementById('palace-bg');
@@ -1025,7 +1058,7 @@
       setText('txt-itinerary-heading', P1.itineraryHeading);
 
       const P2 = INVITE_CONFIG.haldiPage;
-      setSmartImage('img-haldi', P2.imageFile);
+      setSmartImage('img-haldi', P2.imageFile, ['Tilak.png', 'couple-haldi.png']);
       setText('txt-haldi-tag', P2.dayTag);
       setText('txt-haldi-title', P2.title);
       setText('txt-haldi-date', P2.dateTime);
@@ -1095,7 +1128,7 @@
     // Flower Shower Animation & Burst
     const canvas = document.getElementById('flower-canvas');
     const ctx = canvas.getContext('2d');
-    let petalsActive = false;
+    let petalsActive = true;
     let petals = [];
 
     function resizeCanvas() {
@@ -1171,8 +1204,29 @@
     const audio = document.getElementById('bg-music');
     const musicBtn = document.getElementById('music-toggle');
     let isRevealed = false;
+    let userManuallyPaused = false;
 
+    function startMusicIfAllowed() {
+      if (!audio || userManuallyPaused) return;
+      if (audio.paused) {
+        audio.play().then(() => {
+          if (musicBtn) musicBtn.textContent = '⏸ Pause';
+        }).catch(() => {});
+      }
+    }
+
+    // Try playing immediately on load (works if browser allows autoplay)
+    window.addEventListener('DOMContentLoaded', startMusicIfAllowed);
+
+    // Tapping anywhere on screen starts music without leaving landing page
+    function startMusicOnScreenTap() {
+      startMusicIfAllowed();
+    }
+
+    // Only clicking "Tap to open Invite" button opens the main invitation
     function openInvite() {
+      startMusicIfAllowed();
+
       const landingPage = document.getElementById('landing-page');
       const mainInvite = document.getElementById('main-invite');
 
@@ -1203,21 +1257,18 @@
       const petalBtn = document.getElementById('petal-btn');
       if (petalBtn) petalBtn.textContent = '🌸 Petals: ON';
 
-      if (audio) {
-        audio.play().then(() => {
-          if (musicBtn) musicBtn.textContent = '⏸ Pause';
-        }).catch(() => {
-          if (musicBtn) musicBtn.textContent = '🎵 Music';
-        });
-      }
+      startMusicIfAllowed();
     }
 
     function toggleMusic() {
       if (!audio) return;
       if (audio.paused) {
-        audio.play();
-        if (musicBtn) musicBtn.textContent = '⏸ Pause';
+        userManuallyPaused = false;
+        audio.play().then(() => {
+          if (musicBtn) musicBtn.textContent = '⏸ Pause';
+        }).catch(() => {});
       } else {
+        userManuallyPaused = true;
         audio.pause();
         if (musicBtn) musicBtn.textContent = '🎵 Music';
       }
